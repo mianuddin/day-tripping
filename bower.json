@@ -1,0 +1,22 @@
+{
+  "name": "day-tripper",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Mian Uddin <mianuddin@gmail.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Materialize": "materialize#^0.97.6"
+  }
+}
