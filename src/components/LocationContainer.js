@@ -14,7 +14,7 @@ class LocationContainer extends React.Component {
       <div>
         <h3>Locations</h3>
         {this.props.locations.map((location, index) => (
-          <LocationCard name={location.name} key={index} />
+          <LocationCard name={location.name} address={location.address} key={index} />
         ))}
       </div>
     );

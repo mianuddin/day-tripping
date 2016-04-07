@@ -12,9 +12,9 @@ class AdaptableCardContainer extends React.Component {
     this.state = { locations: [] };
   }
 
-  handleUserInput(name) {
+  handleUserInput(name, address) {
     const locationArray = this.state.locations;
-    locationArray.push({ name });
+    locationArray.push({ name, address });
 
     this.setState({ locations: locationArray });
   }
