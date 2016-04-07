@@ -1,15 +1,20 @@
 import React from 'react';
 
+import AdaptableCardContainer from '../components/AdaptableCardContainer';
+
 class App extends React.Component {
   render() {
     return (
       <div>
-        <nav>
-          <div className='nav-wrapper teal'>
-            <a href='#' className='brand-logo'>Day Tripper</a>
+        <nav className="teal">
+          <div className="nav-wrapper container">
+            <a href="#" className="brand-logo">Day Tripper</a>
           </div>
         </nav>
-        {this.props.children}
+        <div className="container">
+          <AdaptableCardContainer />
+          {this.props.children}
+        </div>
       </div>
     );
   }
