@@ -1,19 +1,22 @@
 import React from 'react';
 
+import Card from 'material-ui/lib/card/card';
+import CardActions from 'material-ui/lib/card/card-actions';
+import CardTitle from 'material-ui/lib/card/card-title';
+import FlatButton from 'material-ui/lib/flat-button';
+import CardText from 'material-ui/lib/card/card-text';
+
 const LocationCard = props => (
-  <div className="row">
-    <div className="col s12">
-      <div className="card blue-grey">
-        <div className="card-content white-text">
-          <span className="card-title">{props.location.name}</span>
-          <p>{props.location.address}</p>
-        </div>
-        <div className="card-action">
-          <a href="#" className="right-align teal-text text-accent-3" onClick={props.onRemove.bind(this, props.location.id)}>Remove</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <Card className="card">
+    <CardTitle title={props.location.name} />
+    <CardText>{props.location.address}</CardText>
+    <CardActions>
+      <FlatButton
+        label="Remove"
+        onClick={props.onRemove.bind(this, props.location.id)}
+      />
+    </CardActions>
+  </Card>
 );
 
 LocationCard.propTypes = {

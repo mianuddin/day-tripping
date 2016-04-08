@@ -1,12 +1,12 @@
 import React from 'react';
+import AppBar from 'material-ui/lib/app-bar';
 
 const App = props => (
   <div>
-    <nav className="teal">
-      <div className="nav-wrapper container">
-        <a href="#" className="brand-logo">Day Tripping</a>
-      </div>
-    </nav>
+    <AppBar
+      title="Day Tripping"
+      showMenuIconButton={false}
+    />
     <div className="container">
       {props.children}
     </div>

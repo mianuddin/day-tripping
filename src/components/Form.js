@@ -1,5 +1,8 @@
 import React from 'react';
 
+import TextField from 'material-ui/lib/text-field';
+import RaisedButton from 'material-ui/lib/raised-button';
+
 class Form extends React.Component {
   constructor(props) {
     super(props);
@@ -19,42 +22,50 @@ class Form extends React.Component {
     this.setState({ address: e.target.value });
   }
 
+  handleFieldChange(event, ref) {
+    this.setState({ [ref]: event });
+  }
+
   handleSubmit() {
-    if (!this.refs.location_name.value || !this.refs.location_address.value) {
+    if (!this.state.name || !this.state.address) {
       return;
     }
 
+    this.props.onUserInput(this.state.name, this.state.address);
     this.setState({ name: '', address: '' });
-    this.props.onUserInput(this.refs.location_name.value, this.refs.location_address.value);
   }
 
   render() {
     return (
-      <div className="row">
-        <form className="col s12">
-          <div className="row">
-            <div className="input-field col s8">
-              <input id="location_name" ref="location_name" type="text"
-                className="validate" onChange={this.handleNameChange} value={this.state.name}
-              />
-              <label htmlFor="location_name">Location Name</label>
-            </div>
+      <form>
+        <div className="row">
+          <div className="col-xs-12">
+            <TextField
+              ref="location_name"
+              hintText="SF City Hall"
+              floatingLabelText="Location Name"
+              onChange={this.handleNameChange}
+              value={this.state.name}
+            />
           </div>
-          <div className="row">
-            <div className="input-field col s8">
-              <input id="location_address" ref="location_address" type="text"
-                className="validate" onChange={this.handleAddressChange} value={this.state.address}
-              />
-              <label htmlFor="location_address">Location Address</label>
-            </div>
+          <div className="col-xs-12">
+            <TextField
+              ref="location_address"
+              hintText="San Francisco, CA 94102"
+              floatingLabelText="Location Address"
+              onChange={this.handleAddressChange}
+              value={this.state.address}
+            />
           </div>
-          <div className="row">
-            <div className="col s8">
-              <a className="waves-effect waves-light btn" onClick={this.handleSubmit}>Submit</a>
-            </div>
-          </div>
-        </form>
-      </div>
+        </div>
+        <div className="row">
+          <RaisedButton
+            label="Submit"
+            primary style={{ margin: 12 }}
+            onClick={this.handleSubmit}
+          />
+        </div>
+      </form>
     );
   }
 }

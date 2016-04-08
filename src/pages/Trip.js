@@ -33,12 +33,17 @@ class Trip extends React.Component {
   render() {
     return (
       <div className="row">
-        <div className="col s6" styles="height:420px;width:50%">
-          <Gmap initialCenter={{ lat: 37.7749, lng: -122.4194 }} locations={this.state.locations} />
+        <div className="col-xs-12 col-md-6" styles="height:420px;width:50%">
+          <Gmap
+            initialCenter={{ lat: 37.7749, lng: -122.4194 }}
+            locations={this.state.locations}
+          />
         </div>
-        <div className="col s6">
-          <AdaptableCardContainer locations={this.state.locations}
-            onRemove={this.handleRemove} onUserInput={this.handleUserInput}
+        <div className="col-xs-12 col-md-6">
+          <AdaptableCardContainer
+            locations={this.state.locations}
+            onRemove={this.handleRemove}
+            onUserInput={this.handleUserInput}
           />
         </div>
       </div>
