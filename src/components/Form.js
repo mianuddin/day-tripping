@@ -33,19 +33,23 @@ class Form extends React.Component {
       <div className="row">
         <form className="col s12">
           <div className="row">
-            <div className="input-field col s6">
-              <input id="location_name" ref="location_name" type="text" className="validate" onChange={this.handleNameChange} value={this.state.name} />
+            <div className="input-field col s8">
+              <input id="location_name" ref="location_name" type="text"
+                className="validate" onChange={this.handleNameChange} value={this.state.name}
+              />
               <label htmlFor="location_name">Location Name</label>
             </div>
           </div>
           <div className="row">
-            <div className="input-field col s6">
-              <input id="location_address" ref="location_address" type="text" className="validate" onChange={this.handleAddressChange} value={this.state.address} />
+            <div className="input-field col s8">
+              <input id="location_address" ref="location_address" type="text"
+                className="validate" onChange={this.handleAddressChange} value={this.state.address}
+              />
               <label htmlFor="location_address">Location Address</label>
             </div>
           </div>
           <div className="row">
-            <div className="col s6">
+            <div className="col s8">
               <a className="waves-effect waves-light btn" onClick={this.handleSubmit}>Submit</a>
             </div>
           </div>

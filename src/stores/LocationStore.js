@@ -9,8 +9,8 @@ class LocationStore extends EventEmitter {
 
     this.locations = [
       {
-        name: 'Home',
-        address: '420 Main Street',
+        name: 'SF City Hall',
+        address: '1 Dr Carlton B Goodlett Pl, San Francisco, CA 94102',
         id: shortid.generate(),
       },
     ];
