@@ -1,5 +1,7 @@
 import React from 'react';
 
+import LocationStore from '../stores/LocationStore';
+import * as LocationActions from '../actions/LocationActions';
 import LocationContainer from './LocationContainer';
 import Form from './Form';
 
@@ -9,14 +11,17 @@ class AdaptableCardContainer extends React.Component {
 
     this.handleUserInput = this.handleUserInput.bind(this);
 
-    this.state = { locations: [] };
+    this.state = { locations: LocationStore.getAll() };
+  }
+
+  componentWillMount() {
+    LocationStore.on('change', () => {
+      this.setState({ locations: LocationStore.getAll() });
+    });
   }
 
   handleUserInput(name, address) {
-    const locationArray = this.state.locations;
-    locationArray.push({ name, address });
-
-    this.setState({ locations: locationArray });
+    LocationActions.addLocation(name, address);
   }
 
   render() {
