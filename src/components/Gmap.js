@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleMap, GoogleMapLoader } from 'react-google-maps';
+import { GoogleMap, GoogleMapLoader, Marker } from 'react-google-maps';
 
 import LocationStore from '../stores/LocationStore';
 import * as LocationActions from '../actions/LocationActions';
@@ -12,13 +12,20 @@ class Gmap extends React.Component {
 
     this.handleMapCenterChanged = this.handleMapCenterChanged.bind(this);
 
-    this.state = { center: this.props.initialCenter, zoom: 14 };
+    this.state = {
+      center: this.props.initialCenter,
+      zoom: 14,
+      locations: LocationStore.getAll(),
+    };
   }
 
   componentWillMount() {
     LocationActions.getUserGeolocation();
     LocationStore.on('change_geolocation', () => {
       this.setState({ center: LocationStore.getGeolocation() });
+    });
+    LocationStore.on('change_location', () => {
+      this.setState({ locations: LocationStore.getAll() });
     });
   }
 
@@ -37,6 +44,15 @@ class Gmap extends React.Component {
 
   render() {
     const { zoom, center } = this.state;
+    const markers = this.state.locations.map((location, index) => ({
+      position: {
+        lat: location.lat,
+        lng: location.lng,
+      },
+      key: location.id,
+      defaultAnimation: 2,
+      index,
+    }));
 
     return (
       <GoogleMapLoader
@@ -57,7 +73,13 @@ class Gmap extends React.Component {
             defaultOptions={{
               styles: style,
             }}
-          />
+          >
+          {markers.map((marker) => (
+            <Marker
+              {...marker}
+            />
+          ))}
+          </GoogleMap>
         }
       />
     );

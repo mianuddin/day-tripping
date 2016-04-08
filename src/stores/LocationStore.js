@@ -9,8 +9,10 @@ class LocationStore extends EventEmitter {
 
     this.locations = [
       {
-        name: 'SF City Hall',
-        address: '1 Dr Carlton B Goodlett Pl, San Francisco, CA 94102',
+        name: 'San Francisco',
+        address: 'San Francisco, CA 94102',
+        lat: 37.7749,
+        lng: -122.4194,
         id: shortid.generate(),
       },
     ];
@@ -18,8 +20,8 @@ class LocationStore extends EventEmitter {
     this.geolocation = { lat: 37.7749, lng: -122.4194 };
   }
 
-  addLocation(name, address) {
-    this.locations.push({ name, address, id: shortid.generate() });
+  addLocation(name, address, lat, lng) {
+    this.locations.push({ name, address, id: shortid.generate(), lat, lng });
 
     this.emit('change_location');
   }
@@ -51,15 +53,27 @@ class LocationStore extends EventEmitter {
   handleActions(action) {
     switch (action.type) {
       case 'ADD_LOCATION':
-        this.addLocation(action.name, action.address);
+        this.addLocation(action.name, action.address, action.lat, action.lng);
+        this.emit('added_location');
         break;
       case 'REMOVE_LOCATION':
         this.removeLocation(action.id);
         break;
       case 'RECIEVE_GEOLOCATION':
+        this.emit('recieved_geolocation');
         this.updateGeolocation(action.lat, action.lng);
         break;
+      case 'FETCH_GEOLOCATION':
+        this.emit('fetching_geolocation');
+        break;
       case 'RECIEVE_GEOLOCATION_ERROR':
+        this.emit('error_geolocation');
+        break;
+      case 'FETCHING_LATLNG':
+        this.emit('fetching_latlng');
+        break;
+      case 'ERROR_FETCHING_LATLNG':
+        this.emit('error_latlng');
         break;
       default:
     }
