@@ -8,6 +8,7 @@ const LocationContainer = props => (
     {props.locations.map((location, index) => (
       <LocationCard location={location} key={index} onRemove={props.onRemove} />
     ))}
+    {!props.locations.length ? <p>You have no locations. Try adding one!</p> : null}
   </div>
 );
 
