@@ -14,7 +14,6 @@ class Gmap extends React.Component {
 
     this.state = {
       center: this.props.initialCenter,
-      zoom: 14,
       locations: LocationStore.getAll(),
     };
   }
@@ -37,13 +36,13 @@ class Gmap extends React.Component {
     }
 
     this.setState({
-      center: newPos,
+      center: { lat: newPos.lat(), lng: newPos.lng() },
     });
   }
 
 
   render() {
-    const { zoom, center } = this.state;
+    const { center } = this.state;
     const markers = this.state.locations.map((location, index) => ({
       position: {
         lat: location.lat,
@@ -67,7 +66,7 @@ class Gmap extends React.Component {
         googleMapElement={
           <GoogleMap
             ref={'map'}
-            zoom={zoom}
+            defaultZoom={14}
             center={center}
             onCenterChanged={this.handleMapCenterChanged}
             defaultOptions={{
