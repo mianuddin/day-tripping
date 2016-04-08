@@ -1,42 +1,19 @@
 import React from 'react';
 
-import LocationStore from '../stores/LocationStore';
-import * as LocationActions from '../actions/LocationActions';
 import LocationContainer from './LocationContainer';
 import Form from './Form';
 
-class AdaptableCardContainer extends React.Component {
-  constructor(props) {
-    super(props);
+const AdaptableCardContainer = props => (
+  <div>
+    <LocationContainer locations={props.locations} onRemove={props.onRemove} />
+    <Form onUserInput={props.onUserInput} />
+  </div>
+);
 
-    this.handleRemove = this.handleRemove.bind(this);
-    this.handleUserInput = this.handleUserInput.bind(this);
-
-    this.state = { locations: LocationStore.getAll() };
-  }
-
-  componentWillMount() {
-    LocationStore.on('change', () => {
-      this.setState({ locations: LocationStore.getAll() });
-    });
-  }
-
-  handleRemove(id) {
-    LocationActions.removeLocation(id);
-  }
-
-  handleUserInput(name, address) {
-    LocationActions.addLocation(name, address);
-  }
-
-  render() {
-    return (
-      <div>
-        <LocationContainer locations={this.state.locations} onRemove={this.handleRemove} />
-        <Form onUserInput={this.handleUserInput} />
-      </div>
-    );
-  }
-}
+AdaptableCardContainer.propTypes = {
+  locations: React.PropTypes.array,
+  onRemove: React.PropTypes.func,
+  onUserInput: React.PropTypes.func,
+};
 
 export default AdaptableCardContainer;
