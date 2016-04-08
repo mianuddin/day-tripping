@@ -5,8 +5,11 @@ const LocationCard = props => (
     <div className="col s12 m6">
       <div className="card blue-grey darken-1">
         <div className="card-content white-text">
-          <span className="card-title">{props.name}</span>
-          <p>{props.address}</p>
+          <span className="card-title">{props.location.name}</span>
+          <p>{props.location.address}</p>
+        </div>
+        <div className="card-action">
+          <a href="#" className="right-align" onClick={props.onRemove.bind(this, props.location.id)}>Remove</a>
         </div>
       </div>
     </div>
@@ -14,8 +17,8 @@ const LocationCard = props => (
 );
 
 LocationCard.propTypes = {
-  name: React.PropTypes.string,
-  address: React.PropTypes.string,
+  location: React.PropTypes.object,
+  onRemove: React.PropTypes.func,
 };
 
 export default LocationCard;

@@ -6,13 +6,14 @@ const LocationContainer = props => (
   <div>
     <h3>Locations</h3>
     {props.locations.map((location, index) => (
-      <LocationCard name={location.name} address={location.address} key={index} />
+      <LocationCard location={location} key={index} onRemove={props.onRemove} />
     ))}
   </div>
 );
 
 LocationContainer.propTypes = {
   locations: React.PropTypes.array,
+  onRemove: React.PropTypes.func,
 };
 
 export default LocationContainer;

@@ -9,6 +9,7 @@ class AdaptableCardContainer extends React.Component {
   constructor(props) {
     super(props);
 
+    this.handleRemove = this.handleRemove.bind(this);
     this.handleUserInput = this.handleUserInput.bind(this);
 
     this.state = { locations: LocationStore.getAll() };
@@ -20,6 +21,10 @@ class AdaptableCardContainer extends React.Component {
     });
   }
 
+  handleRemove(id) {
+    LocationActions.removeLocation(id);
+  }
+
   handleUserInput(name, address) {
     LocationActions.addLocation(name, address);
   }
@@ -27,7 +32,7 @@ class AdaptableCardContainer extends React.Component {
   render() {
     return (
       <div>
-        <LocationContainer locations={this.state.locations} />
+        <LocationContainer locations={this.state.locations} onRemove={this.handleRemove} />
         <Form onUserInput={this.handleUserInput} />
       </div>
     );

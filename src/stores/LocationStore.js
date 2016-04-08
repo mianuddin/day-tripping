@@ -11,6 +11,7 @@ class LocationStore extends EventEmitter {
       {
         name: 'Home',
         address: '420 Main Street',
+        id: shortid.generate(),
       },
     ];
   }
@@ -19,6 +20,16 @@ class LocationStore extends EventEmitter {
     this.locations.push({ name, address, id: shortid.generate() });
 
     this.emit('change');
+  }
+
+  removeLocation(id) {
+    for (let i = 0; i < this.locations.length; i++) {
+      if (this.locations[i].id === id) {
+        this.locations.splice(i, 1);
+        this.emit('change');
+        return;
+      }
+    }
   }
 
   getAll() {
@@ -31,7 +42,7 @@ class LocationStore extends EventEmitter {
         this.addLocation(action.name, action.address);
         break;
       case 'REMOVE_LOCATION':
-        // Remove location here.
+        this.removeLocation(action.id);
         break;
       default:
     }
