@@ -14,3 +14,18 @@ export function removeLocation(id) {
     id,
   });
 }
+
+export function getUserGeolocation() {
+  dispatcher.dispatch({ type: 'FETCH_GEOLOCATION' });
+  if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition((position) =>
+      dispatcher.dispatch({
+        type: 'RECIEVE_GEOLOCATION',
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      })
+    );
+  } else {
+    dispatcher.dispatch({ type: 'RECIEVE_GEOLOCATION_ERROR' });
+  }
+}

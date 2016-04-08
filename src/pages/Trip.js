@@ -17,7 +17,7 @@ class Trip extends React.Component {
   }
 
   componentWillMount() {
-    LocationStore.on('change', () => {
+    LocationStore.on('change_location', () => {
       this.setState({ locations: LocationStore.getAll() });
     });
   }
@@ -34,7 +34,7 @@ class Trip extends React.Component {
     return (
       <div className="row">
         <div className="col s6" styles="height:420px;width:50%">
-          <Gmap />
+          <Gmap initialCenter={{ lat: 37.7749, lng: -122.4194 }} locations={this.state.locations} />
         </div>
         <div className="col s6">
           <AdaptableCardContainer locations={this.state.locations}

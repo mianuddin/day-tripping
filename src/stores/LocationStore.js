@@ -14,26 +14,38 @@ class LocationStore extends EventEmitter {
         id: shortid.generate(),
       },
     ];
+
+    this.geolocation = { lat: 37.7749, lng: -122.4194 };
   }
 
   addLocation(name, address) {
     this.locations.push({ name, address, id: shortid.generate() });
 
-    this.emit('change');
+    this.emit('change_location');
   }
 
   removeLocation(id) {
     for (let i = 0; i < this.locations.length; i++) {
       if (this.locations[i].id === id) {
         this.locations.splice(i, 1);
-        this.emit('change');
+        this.emit('change_location');
         return;
       }
     }
   }
 
+  updateGeolocation(lat, lng) {
+    this.geolocation = { lat, lng };
+
+    this.emit('change_geolocation');
+  }
+
   getAll() {
     return this.locations;
+  }
+
+  getGeolocation() {
+    return this.geolocation;
   }
 
   handleActions(action) {
@@ -43,6 +55,11 @@ class LocationStore extends EventEmitter {
         break;
       case 'REMOVE_LOCATION':
         this.removeLocation(action.id);
+        break;
+      case 'RECIEVE_GEOLOCATION':
+        this.updateGeolocation(action.lat, action.lng);
+        break;
+      case 'RECIEVE_GEOLOCATION_ERROR':
         break;
       default:
     }

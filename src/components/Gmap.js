@@ -1,30 +1,72 @@
 import React from 'react';
 import { GoogleMap, GoogleMapLoader } from 'react-google-maps';
 
+import LocationStore from '../stores/LocationStore';
+import * as LocationActions from '../actions/LocationActions';
+
 const style = [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#e9e9e9"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#ffffff"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":21}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#dedede"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}];
 
-const Gmap = props => (
-  <GoogleMapLoader
-    containerElement={
-      <div
-        {...props}
-        style={{
-          height: '80vh',
-          margin: '1.46rem 0 1.168rem 0',
-        }}
-      />
+class Gmap extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleMapCenterChanged = this.handleMapCenterChanged.bind(this);
+
+    this.state = { center: this.props.initialCenter, zoom: 14 };
+  }
+
+  componentWillMount() {
+    LocationActions.getUserGeolocation();
+    LocationStore.on('change_geolocation', () => {
+      this.setState({ center: LocationStore.getGeolocation() });
+    });
+  }
+
+  /* global google */
+  handleMapCenterChanged() {
+    const newPos = this.refs.map.getCenter();
+    if (newPos.equals(new google.maps.LatLng(this.props.initialCenter))) {
+      return;
     }
-    googleMapElement={
-      <GoogleMap
-        ref={(map) => console.log(map)}
-        defaultZoom={12}
-        defaultCenter={{ lat: 37.7749, lng: -122.4194 }}
-        defaultOptions={{
-          styles: style,
-        }}
+
+    this.setState({
+      center: newPos,
+    });
+  }
+
+
+  render() {
+    const { zoom, center } = this.state;
+
+    return (
+      <GoogleMapLoader
+        containerElement={
+          <div
+            style={{
+              height: '80vh',
+              margin: '1.46rem 0 1.168rem 0',
+            }}
+          />
+        }
+        googleMapElement={
+          <GoogleMap
+            ref={'map'}
+            zoom={zoom}
+            center={center}
+            onCenterChanged={this.handleMapCenterChanged}
+            defaultOptions={{
+              styles: style,
+            }}
+          />
+        }
       />
-    }
-  />
-);
+    );
+  }
+}
+
+Gmap.propTypes = {
+  locations: React.PropTypes.array,
+  initialCenter: React.PropTypes.object,
+};
 
 export default Gmap;
