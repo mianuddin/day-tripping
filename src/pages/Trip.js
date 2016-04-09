@@ -85,7 +85,7 @@ class Trip extends React.Component {
             initialCenter={{ lat: 37.7749, lng: -122.4194 }}
           />
         </div>
-        <div className="col-xs-12 col-md-6">
+        <div id="OtherContainer" className="col-xs-12 col-md-6">
           <AdaptableCardContainer
             locations={this.state.locations}
             onRemove={this.handleRemove}
