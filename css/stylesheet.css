@@ -1,0 +1,52 @@
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Roboto', 'sans-serif';
+}
+
+@media only screen and (max-width: 48em) {
+  #GmapContainer > div {
+    height: 35vh !important;
+    margin: 0 -5% !important;
+  }
+}
+
+#AdaptableCardContainer {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+}
+
+#AdaptableCardContainer > h2 {
+  margin-bottom: 0.5rem;
+}
+
+#AdaptableCardContainer > div {
+  flex-basis: 100%;
+  overflow-y: hidden;
+}
+
+#AdaptableCardContainer > div > p {
+  color: #9E9E9E;
+  margin: 0.5rem 0;
+}
+
+#AdaptableCardContainer > div:hover {
+  overflow-y: auto;
+}
+
+#AdaptableCardContainer > form {
+  background: #FFF;
+  padding: 0.5rem 1rem;
+  border-top: 1px solid #E0E0E0;
+}
+
+.card {
+  margin: 1rem 0.25rem;
+}
+
+.card + .card {
+  margin: 0.5rem 0.25rem;
+}
