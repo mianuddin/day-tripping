@@ -28,6 +28,5 @@ export default {
     hot: true,
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
   ],
 };
