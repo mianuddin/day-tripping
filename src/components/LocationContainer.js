@@ -4,7 +4,6 @@ import LocationCard from './LocationCard';
 
 const LocationContainer = props => (
   <div>
-    <h2>Locations</h2>
     {props.locations.map((location, index) => (
       <LocationCard location={location} key={index} onRemove={props.onRemove} />
     ))}
