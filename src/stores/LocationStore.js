@@ -7,15 +7,7 @@ class LocationStore extends EventEmitter {
   constructor() {
     super();
 
-    this.locations = [
-      {
-        name: 'San Francisco',
-        address: 'San Francisco, CA 94102',
-        lat: 37.7749,
-        lng: -122.4194,
-        id: shortid.generate(),
-      },
-    ];
+    this.locations = [];
 
     this.geolocation = { lat: 37.7749, lng: -122.4194 };
   }

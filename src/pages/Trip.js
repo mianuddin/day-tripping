@@ -75,12 +75,12 @@ class Trip extends React.Component {
     this.setState({
       open: false,
     });
-  };
+  }
 
   render() {
     return (
       <div className="row">
-        <div className="col-xs-12 col-md-6" styles="height:420px;width:50%">
+        <div className="col-xs-12 col-md-6" id="GmapContainer" styles="height:420px;width:50%">
           <Gmap
             initialCenter={{ lat: 37.7749, lng: -122.4194 }}
           />

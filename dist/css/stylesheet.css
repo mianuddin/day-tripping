@@ -6,21 +6,10 @@ body {
   font-family: 'Roboto', 'sans-serif';
 }
 
-.container {
-  margin: 0 auto;
-  max-width: 1280px;
-  width: 90%;
-}
-
-@media only screen and (min-width: 601px) {
-  .container {
-    width: 85%;
-  }
-}
-
-@media only screen and (min-width: 993px) {
-  .container {
-    width: 70%;
+@media only screen and (max-width: 48em) {
+  #GmapContainer > div {
+    height: 35vh !important;
+    margin: 0 -5% !important;
   }
 }
 
