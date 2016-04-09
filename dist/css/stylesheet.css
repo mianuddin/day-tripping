@@ -7,9 +7,13 @@ body {
 }
 
 @media only screen and (max-width: 48em) {
+  .container {
+    width: 100vw;
+    overflow-x: hidden;
+  }
   #GmapContainer > div {
     height: 35vh !important;
-    margin: 0 -5% !important;
+    margin: 0 !important;
   }
   #AdaptableCardContainer {
     height: auto !important;
