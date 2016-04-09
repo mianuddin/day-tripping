@@ -11,6 +11,10 @@ body {
     height: 35vh !important;
     margin: 0 -5% !important;
   }
+  #AdaptableCardContainer {
+    height: auto !important;
+    margin: 0 5vw;
+  }
 }
 
 #AdaptableCardContainer {
@@ -30,7 +34,7 @@ body {
 
 #AdaptableCardContainer > div > p {
   color: #9E9E9E;
-  margin: 0.5rem 0;
+  margin: 0.5rem 0 2rem 0;
 }
 
 #AdaptableCardContainer > div:hover {
