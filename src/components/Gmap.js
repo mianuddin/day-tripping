@@ -10,6 +10,8 @@ class Gmap extends React.Component {
   constructor(props) {
     super(props);
 
+    this.getGeolocation = this.getGeolocation.bind(this);
+    this.getLocations = this.getLocations.bind(this);
     this.handleMapCenterChanged = this.handleMapCenterChanged.bind(this);
 
     this.state = {
@@ -20,12 +22,21 @@ class Gmap extends React.Component {
 
   componentWillMount() {
     LocationActions.getUserGeolocation();
-    LocationStore.on('change_geolocation', () => {
-      this.setState({ center: LocationStore.getGeolocation() });
-    });
-    LocationStore.on('change_location', () => {
-      this.setState({ locations: LocationStore.getAll() });
-    });
+    LocationStore.on('change_geolocation', this.getGeolocation);
+    LocationStore.on('change_location', this.getLocations);
+  }
+
+  componentWillUnmount() {
+    LocationStore.removeListener('change_geolocation', this.getGeolocation);
+    LocationStore.removeListener('change_location', this.getLocations);
+  }
+
+  getGeolocation() {
+    this.setState({ center: LocationStore.getGeolocation() });
+  }
+
+  getLocations() {
+    this.setState({ locations: LocationStore.getAll() });
   }
 
   /* global google */

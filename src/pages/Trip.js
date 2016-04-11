@@ -11,6 +11,7 @@ class Trip extends React.Component {
   constructor(props) {
     super(props);
 
+    this.getLocations = this.getLocations.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
     this.handleUserInput = this.handleUserInput.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
@@ -19,48 +20,39 @@ class Trip extends React.Component {
   }
 
   componentWillMount() {
-    LocationStore.on('change_location', () => {
-      this.setState({ locations: LocationStore.getAll() });
+    LocationStore.on('change_location', this.getLocations);
+    LocationStore.on('fetching_geolocation', this.setSnackbar.bind(this, 'Requesting geolocation...'));
+    LocationStore.on('recieved_geolocation', this.setSnackbar.bind(this, 'Recieved geolocation.', 1500));
+    LocationStore.on('error_geolocation', this.setSnackbar.bind(this, 'Could not detect your location!'));
+    LocationStore.on('fetching_latlng', this.setSnackbar.bind(this, 'Adding location...'));
+    LocationStore.on('added_location', this.setSnackbar.bind(this, 'Added location.', 1500));
+    LocationStore.on('error_latlng', this.setSnackbar.bind(this, 'Could not find the coordinates of your location!'));
+  }
+
+  componentWillUnmount() {
+    LocationStore.removeListener('change_location', this.getLocations);
+    LocationStore.removeListener('fetching_geolocation', this.setSnackbar.bind(this, 'Requesting geolocation...'));
+    LocationStore.removeListener('recieved_geolocation', this.setSnackbar.bind(this, 'Recieved geolocation.', 1500));
+    LocationStore.removeListener('error_geolocation', this.setSnackbar.bind(this, 'Could not detect your location!'));
+    LocationStore.removeListener('fetching_latlng', this.setSnackbar.bind(this, 'Adding location...'));
+    LocationStore.removeListener('added_location', this.setSnackbar.bind(this, 'Added location.', 1500));
+    LocationStore.removeListener('error_latlng', this.setSnackbar.bind(this, 'Could not find the coordinates of your location!'));
+  }
+
+  getLocations() {
+    this.setState({ locations: LocationStore.getAll() });
+  }
+
+  setSnackbar(message, timeout = false) {
+    this.setState({
+      message: [message],
+      open: true,
     });
-    LocationStore.on('fetching_geolocation', () => {
-      // Change state of open and message.
-      this.setState({
-        open: true,
-        message: 'Requesting geolocation...',
-      });
-    });
-    LocationStore.on('recieved_geolocation', () => {
-      this.setState({
-        message: 'Recieved geolocation.',
-      });
+    if (timeout) {
       setTimeout(() => {
         this.setState({ open: false });
-      }, 1500);
-    });
-    LocationStore.on('error_geolocation', () => {
-      this.setState({
-        message: 'Could not detect your location!',
-      });
-    });
-    LocationStore.on('fetching_latlng', () => {
-      this.setState({
-        open: true,
-        message: 'Adding location...',
-      });
-    });
-    LocationStore.on('added_location', () => {
-      this.setState({
-        message: 'Added location.',
-      });
-      setTimeout(() => {
-        this.setState({ open: false });
-      }, 1500);
-    });
-    LocationStore.on('error_latlng', () => {
-      this.setState({
-        message: 'Could not find the coordinates of your location!',
-      });
-    });
+      }, timeout);
+    }
   }
 
   handleRemove(id) {
