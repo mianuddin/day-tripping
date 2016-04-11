@@ -2,8 +2,6 @@ import webpack from 'webpack';
 
 export default {
   entry: [
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
     './src/index.js',
   ],
   module: {
@@ -12,6 +10,10 @@ export default {
         test: /\.js?$/,
         exclude: /node_modules/,
         loader: 'react-hot!babel',
+      },
+      {
+        test: /\.json$/,
+        loader: 'json',
       },
     ],
   },
@@ -22,10 +24,6 @@ export default {
     path: 'dist',
     publicPath: '/',
     filename: 'bundle.js',
-  },
-  devServer: {
-    contentBase: './dist',
-    hot: true,
   },
   plugins: [
   ],
