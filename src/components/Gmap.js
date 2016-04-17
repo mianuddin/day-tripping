@@ -4,6 +4,7 @@ import { GoogleMap, GoogleMapLoader, Marker } from 'react-google-maps';
 import LocationStore from '../stores/LocationStore';
 import * as LocationActions from '../actions/LocationActions';
 
+import '../styles/partials/_GmapContainer';
 import MapStyle from '../styles/other/UltraWhiteWithLabels.json';
 
 class Gmap extends React.Component {

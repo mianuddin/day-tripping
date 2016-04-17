@@ -3,9 +3,8 @@ import AppBar from 'material-ui/lib/app-bar';
 
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
 import MyRawTheme from '../styles/other/MUITealTheme';
-import '../styles/partials/_base.scss';
-// TODO: Replace with partials/ add modules.
-import '../styles/stylesheet.scss';
+import '../styles/partials/_base';
+import '../styles/partials/_container';
 
 class App extends React.Component {
   getChildContext() {

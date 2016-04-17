@@ -1,0 +1,10 @@
+#GmapContainer {
+  > {
+    div {
+      @media only screen and (max-width: 48em) {
+        height: 35vh !important;
+        margin: 0 !important;
+      }
+    }
+  }
+}

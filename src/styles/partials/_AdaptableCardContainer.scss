@@ -23,4 +23,8 @@
       background: #fff;
     }
   }
+  @media only screen and (max-width: 48em) {
+    height: auto !important;
+    margin: 0 5vw;
+  }
 }

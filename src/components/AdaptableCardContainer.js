@@ -3,7 +3,7 @@ import React from 'react';
 import LocationContainer from './LocationContainer';
 import Form from './Form';
 
-import '../styles/partials/_AdaptableCardContainer.scss';
+import '../styles/partials/_AdaptableCardContainer';
 
 const AdaptableCardContainer = props => (
   <div id="AdaptableCardContainer">
