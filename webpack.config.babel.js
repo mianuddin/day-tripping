@@ -1,4 +1,5 @@
 import webpack from 'webpack';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 export default {
   entry: [
@@ -17,10 +18,14 @@ export default {
         test: /\.json$/,
         loader: 'json',
       },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('css!sass'),
+      },
     ],
   },
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['', '.js', '.scss'],
   },
   output: {
     path: 'dist',
@@ -34,5 +39,6 @@ export default {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new ExtractTextPlugin('css/bundle.css'),
   ],
 };
