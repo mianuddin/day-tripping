@@ -1,4 +1,3 @@
-import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 export default {
@@ -18,7 +17,7 @@ export default {
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('css!sass'),
+        loader: ExtractTextPlugin.extract('css?minimize!postcss-loader!sass'),
       },
     ],
   },

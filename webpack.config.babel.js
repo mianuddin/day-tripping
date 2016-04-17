@@ -1,5 +1,6 @@
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import autoprefixer from 'autoprefixer';
 
 export default {
   entry: [
@@ -20,10 +21,13 @@ export default {
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('css!sass'),
+        loader: ExtractTextPlugin.extract('css!postcss-loader!sass'),
       },
     ],
   },
+  postcss: [
+    autoprefixer({ browsers: ['last 2 versions'] }),
+  ],
   resolve: {
     extensions: ['', '.js', '.scss'],
   },
