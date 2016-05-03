@@ -14,8 +14,8 @@ injectTapEventPlugin();
 const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
 
 ReactDOM.render(
-    <Router history={appHistory} onUpdate={() => window.scrollTo(0, 0)}>
-        {routes}
-    </Router>,
-    document.getElementById('app')
+  <Router history={appHistory} onUpdate={() => window.scrollTo(0, 0)}>
+    {routes}
+  </Router>,
+  document.getElementById('app')
 );
