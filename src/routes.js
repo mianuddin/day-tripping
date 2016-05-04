@@ -2,11 +2,11 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import App from './pages/App';
-import Trip from './pages/Trip';
+import SmartTrip from './pages/SmartTrip';
 
 const routes = (
     <Route path="/" component={ App }>
-      <IndexRoute component={ Trip } />
+      <IndexRoute component={ SmartTrip } />
     </Route>
 );
 
