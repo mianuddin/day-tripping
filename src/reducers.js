@@ -4,10 +4,10 @@ import shortid from 'shortid';
 export function location(state, action) {
   switch (action.type) {
     case 'FETCHING_LATLNG':
-      return state.set('fetchingCoordinates', true);
+      return state.set('isFetchingCoordinates', true);
     case 'RECIEVE_LATLNG_SUCCESS':
     case 'RECIEVE_LATLNG_ERROR':
-      return state.set('fetchingCoordinates', false);
+      return state.set('isFetchingCoordinates', false);
     case 'ADD_LOCATION':
       return state.locations.push(fromJS({
         name: action.name,
@@ -31,11 +31,11 @@ export function location(state, action) {
 export function map(state, action) {
   switch (action.type) {
     case 'FETCH_GEOLOCATION':
-      return state.setIn(['geolocation', 'fetching'], true);
+      return state.setIn(['geolocation', 'isFetching'], true);
     case 'RECIEVE_GEOLOCATION_SUCCESS':
       return state.merge(fromJS({
         geolocation: {
-          fetching: false,
+          isFetching: false,
           center: {
             lat: action.lat,
             lng: action.lng,
