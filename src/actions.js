@@ -104,3 +104,10 @@ export function setSnackbarMessage(message) {
     message,
   };
 }
+
+export function setMapCenter(center) {
+  return {
+    type: 'SET_MAP_CENTER',
+    center,
+  };
+}

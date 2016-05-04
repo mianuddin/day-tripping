@@ -8,7 +8,10 @@ const Trip = props => (
   <div className="row">
     <div className="col-xs-12 col-md-6" id="GmapContainer" styles="height:420px;width:50%">
       <Gmap
+        locations={props.locations}
         initialCenter={{ lat: 37.7749, lng: -122.4194 }}
+        center={props.mapCenter}
+        setCenter={props.setMapCenter}
       />
     </div>
     <div id="OtherContainer" className="col-xs-12 col-md-6">
@@ -38,6 +41,8 @@ Trip.propTypes = {
   getUserGeolocation: React.PropTypes.func,
   toggleSnackbar: React.PropTypes.func,
   setSnackbarMessage: React.PropTypes.func,
+  mapCenter: React.PropTypes.object,
+  setMapCenter: React.PropTypes.func,
 };
 
 export default Trip;

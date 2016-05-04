@@ -27,10 +27,6 @@ const initialState = fromJS({
     },
     geolocation: {
       isFetching: false,
-      center: {
-        lat: 0,
-        lng: 0,
-      },
     },
   },
   snackbar: {

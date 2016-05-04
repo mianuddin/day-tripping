@@ -30,16 +30,14 @@ export function location(state, action) {
 
 export function map(state, action) {
   switch (action.type) {
+    case 'SET_MAP_CENTER':
+      return state.set('center', fromJS(action.center));
     case 'FETCH_GEOLOCATION':
       return state.setIn(['geolocation', 'isFetching'], true);
     case 'RECIEVE_GEOLOCATION_SUCCESS':
       return state.merge(fromJS({
         geolocation: {
           isFetching: false,
-          center: {
-            lat: action.lat,
-            lng: action.lng,
-          },
         },
         center: {
           lat: action.lat,

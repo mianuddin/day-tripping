@@ -8,19 +8,8 @@ class Gmap extends React.Component {
   constructor(props) {
     super(props);
 
-    this.getGeolocation = this.getGeolocation.bind(this);
-    this.getLocations = this.getLocations.bind(this);
     this.handleMapCenterChanged = this.handleMapCenterChanged.bind(this);
-
-    this.state = {
-      center: this.props.initialCenter,
-      locations: [],
-    };
   }
-
-  getGeolocation() {}
-
-  getLocations() {}
 
   /* global google */
   handleMapCenterChanged() {
@@ -29,15 +18,14 @@ class Gmap extends React.Component {
       return;
     }
 
-    this.setState({
-      center: { lat: newPos.lat(), lng: newPos.lng() },
+    this.props.setCenter({
+      lat: newPos.lat(),
+      lng: newPos.lng(),
     });
   }
 
-
   render() {
-    const { center } = this.state;
-    const markers = this.state.locations.map((location, index) => ({
+    const markers = this.props.locations.map((location, index) => ({
       position: {
         lat: location.lat,
         lng: location.lng,
@@ -61,7 +49,7 @@ class Gmap extends React.Component {
           <GoogleMap
             ref={'map'}
             defaultZoom={14}
-            center={center}
+            center={this.props.center}
             onCenterChanged={this.handleMapCenterChanged}
             defaultOptions={{
               styles: MapStyle,
@@ -82,6 +70,8 @@ class Gmap extends React.Component {
 Gmap.propTypes = {
   locations: React.PropTypes.array,
   initialCenter: React.PropTypes.object,
+  center: React.PropTypes.object,
+  setCenter: React.PropTypes.func,
 };
 
 export default Gmap;

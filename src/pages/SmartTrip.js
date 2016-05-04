@@ -9,6 +9,7 @@ function mapStateToProps(state) {
     isFetchingGeolocation: state.getIn(['map', 'geolocation', 'isFetching']),
     isSnackbarOpen: state.getIn(['snackbar', 'open']),
     snackbarMessage: state.getIn(['snackbar', 'message']),
+    mapCenter: state.getIn(['map', 'center']).toJS(),
   };
 }
 
@@ -27,6 +28,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   setSnackbarMessage: (message) => {
     dispatch(Actions.setSnackbarMessage(message));
+  },
+  setMapCenter: (center) => {
+    dispatch(Actions.setMapCenter(center));
   },
 });
 
