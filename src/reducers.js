@@ -17,9 +17,9 @@ export function location(state, action) {
         lng: action.lng,
       })));
     case 'REMOVE_LOCATION':
-      for (let i = 0; i < state.locations.size; i++) {
-        if (state.locations[i].get('id') === action.id) {
-          return state.locations.splice(i, 1);
+      for (let i = 0; i < state.get('locations').size; i++) {
+        if (state.get('locations').toJS()[i].id === action.id) {
+          return state.set('locations', state.get('locations').splice(i, 1));
         }
       }
       return state;
