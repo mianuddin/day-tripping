@@ -66,4 +66,17 @@ class Trip extends React.Component {
   }
 }
 
+Trip.propTypes = {
+  locations: React.PropTypes.array,
+  isFetchingCoordinates: React.PropTypes.bool,
+  isFetchingGeolocation: React.PropTypes.bool,
+  isSnackbarOpen: React.PropTypes.bool,
+  snackbarMessage: React.PropTypes.string,
+  addLocation: React.PropTypes.func,
+  removeLocation: React.PropTypes.func,
+  getUserGeolocation: React.PropTypes.func,
+  toggleSnackbar: React.PropTypes.func,
+  setSnackbarMessage: React.PropTypes.func,
+};
+
 export default Trip;
