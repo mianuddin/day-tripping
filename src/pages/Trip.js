@@ -4,9 +4,6 @@ import Gmap from '../components/Gmap';
 import AdaptableCardContainer from '../components/AdaptableCardContainer';
 import Snackbar from 'material-ui/lib/snackbar';
 
-import LocationStore from '../stores/LocationStore';
-import * as LocationActions from '../actions/LocationActions';
-
 class Trip extends React.Component {
   constructor(props) {
     super(props);
@@ -16,74 +13,10 @@ class Trip extends React.Component {
     this.handleUserInput = this.handleUserInput.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
 
-    this.state = { locations: LocationStore.getAll(), open: false, message: '' };
+    this.state = { locations: [], open: false, message: '' };
   }
 
-  componentWillMount() {
-    LocationStore.on(
-      'change_location',
-      this.getLocations
-    );
-    LocationStore.on(
-      'fetching_geolocation',
-      this.setSnackbar.bind(this, 'Requesting geolocation...')
-    );
-    LocationStore.on(
-      'recieved_geolocation',
-      this.setSnackbar.bind(this, 'Recieved geolocation.', 1500)
-    );
-    LocationStore.on(
-      'error_geolocation',
-      this.setSnackbar.bind(this, 'Could not detect your location!')
-    );
-    LocationStore.on(
-      'fetching_latlng',
-      this.setSnackbar.bind(this, 'Adding location...')
-    );
-    LocationStore.on(
-      'added_location',
-      this.setSnackbar.bind(this, 'Added location.', 1500)
-    );
-    LocationStore.on(
-      'error_latlng',
-      this.setSnackbar.bind(this, 'Could not find the coordinates of your location!')
-    );
-  }
-
-  componentWillUnmount() {
-    LocationStore.removeListener(
-      'change_location',
-      this.getLocations
-    );
-    LocationStore.removeListener(
-      'fetching_geolocation',
-      this.setSnackbar.bind(this, 'Requesting geolocation...')
-    );
-    LocationStore.removeListener(
-      'recieved_geolocation',
-      this.setSnackbar.bind(this, 'Recieved geolocation.', 1500)
-    );
-    LocationStore.removeListener(
-      'error_geolocation',
-      this.setSnackbar.bind(this, 'Could not detect your location!')
-    );
-    LocationStore.removeListener(
-      'fetching_latlng',
-      this.setSnackbar.bind(this, 'Adding location...')
-    );
-    LocationStore.removeListener(
-      'added_location',
-      this.setSnackbar.bind(this, 'Added location.', 1500)
-    );
-    LocationStore.removeListener(
-      'error_latlng',
-      this.setSnackbar.bind(this, 'Could not find the coordinates of your location!')
-    );
-  }
-
-  getLocations() {
-    this.setState({ locations: LocationStore.getAll() });
-  }
+  getLocations() {}
 
   setSnackbar(message, timeout = false) {
     this.setState({
@@ -97,13 +30,9 @@ class Trip extends React.Component {
     }
   }
 
-  handleRemove(id) {
-    LocationActions.removeLocation(id);
-  }
+  handleRemove(id) {}
 
-  handleUserInput(name, address) {
-    LocationActions.newLocation(name, address);
-  }
+  handleUserInput(name, address) {}
 
   handleRequestClose() {
     this.setState({

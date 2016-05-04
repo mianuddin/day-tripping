@@ -1,6 +1,7 @@
 import React from 'react';
 
-import TextField from 'material-ui/lib/text-field';
+import Formsy from 'formsy-react';
+import FormsyText from 'formsy-material-ui/lib/FormsyText';
 import RaisedButton from 'material-ui/lib/raised-button';
 
 class Form extends React.Component {
@@ -37,10 +38,14 @@ class Form extends React.Component {
 
   render() {
     return (
-      <form>
+      <Formsy.Form
+        onValidSubmit={this.handleSubmit}
+      >
         <div className="row">
           <div className="col-xs-12">
-            <TextField
+            <FormsyText
+              required
+              name="locationName"
               ref="location_name"
               hintText="SF City Hall"
               floatingLabelText="Location Name"
@@ -49,7 +54,9 @@ class Form extends React.Component {
             />
           </div>
           <div className="col-xs-12">
-            <TextField
+            <FormsyText
+              required
+              name="locationAddress"
               ref="location_address"
               hintText="San Francisco, CA 94102"
               floatingLabelText="Location Address"
@@ -62,10 +69,9 @@ class Form extends React.Component {
           <RaisedButton
             label="Submit"
             primary style={{ margin: 12 }}
-            onClick={this.handleSubmit}
           />
         </div>
-      </form>
+      </Formsy.Form>
     );
   }
 }

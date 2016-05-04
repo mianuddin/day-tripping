@@ -1,9 +1,6 @@
 import React from 'react';
 import { GoogleMap, GoogleMapLoader, Marker } from 'react-google-maps';
 
-import LocationStore from '../stores/LocationStore';
-import * as LocationActions from '../actions/LocationActions';
-
 import '../styles/partials/_GmapContainer';
 import MapStyle from '../styles/other/UltraWhiteWithLabels.json';
 
@@ -17,28 +14,13 @@ class Gmap extends React.Component {
 
     this.state = {
       center: this.props.initialCenter,
-      locations: LocationStore.getAll(),
+      locations: [],
     };
   }
 
-  componentWillMount() {
-    LocationActions.getUserGeolocation();
-    LocationStore.on('change_geolocation', this.getGeolocation);
-    LocationStore.on('change_location', this.getLocations);
-  }
+  getGeolocation() {}
 
-  componentWillUnmount() {
-    LocationStore.removeListener('change_geolocation', this.getGeolocation);
-    LocationStore.removeListener('change_location', this.getLocations);
-  }
-
-  getGeolocation() {
-    this.setState({ center: LocationStore.getGeolocation() });
-  }
-
-  getLocations() {
-    this.setState({ locations: LocationStore.getAll() });
-  }
+  getLocations() {}
 
   /* global google */
   handleMapCenterChanged() {
