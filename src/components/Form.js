@@ -11,8 +11,6 @@ class Form extends React.Component {
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleAddressChange = this.handleAddressChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
-    this.state = { name: '', address: '' };
   }
 
   handleNameChange(e) {
@@ -27,14 +25,7 @@ class Form extends React.Component {
     this.setState({ [ref]: event });
   }
 
-  handleSubmit() {
-    if (!this.state.name || !this.state.address) {
-      return;
-    }
-
-    this.props.onUserInput(this.state.name, this.state.address);
-    this.setState({ name: '', address: '' });
-  }
+  handleSubmit() {}
 
   render() {
     return (
@@ -49,8 +40,6 @@ class Form extends React.Component {
               ref="location_name"
               hintText="SF City Hall"
               floatingLabelText="Location Name"
-              onChange={this.handleNameChange}
-              value={this.state.name}
             />
           </div>
           <div className="col-xs-12">
@@ -60,8 +49,6 @@ class Form extends React.Component {
               ref="location_address"
               hintText="San Francisco, CA 94102"
               floatingLabelText="Location Address"
-              onChange={this.handleAddressChange}
-              value={this.state.address}
             />
           </div>
         </div>
@@ -75,9 +62,5 @@ class Form extends React.Component {
     );
   }
 }
-
-Form.propTypes = {
-  onUserInput: React.PropTypes.func,
-};
 
 export default Form;
