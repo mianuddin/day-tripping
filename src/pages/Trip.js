@@ -15,6 +15,7 @@ const Trip = props => (
       <AdaptableCardContainer
         locations={props.locations}
         onRemove={props.removeLocation}
+        handleSubmit={props.addLocation}
       />
     </div>
     <Snackbar
