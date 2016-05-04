@@ -55,7 +55,7 @@ export function snackbar(state, action) {
     case 'TOGGLE_SNACKBAR':
       return state.set('open', !state.get('open'));
     case 'SET_SNACKBAR_MESSAGE':
-      return state.set('message', action.message);
+      return state.set('message', action.message).set('open', true);
     default:
       return state;
   }

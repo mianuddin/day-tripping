@@ -77,16 +77,20 @@ export function recieveUserGeolocationError(error) {
 
 export function getUserGeolocation() {
   return (dispatch) => {
+    dispatch(this.setSnackbarMessage('Requesting geolocation...'));
     dispatch(fetchUserGeolocation());
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
+        dispatch(this.setSnackbarMessage('Recieved geolocation.'));
         dispatch(recieveUserGeolocation(latitude, longitude));
       }, () => {
+        dispatch(this.setSnackbarMessage('Could not detect your location!'));
         dispatch(recieveUserGeolocationError());
       });
     } else {
+      dispatch(this.setSnackbarMessage('Could not detect your location!'));
       dispatch(recieveUserGeolocationError());
     }
   };
