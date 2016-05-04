@@ -82,7 +82,7 @@ export function getUserGeolocation() {
       navigator.geolocation.getCurrentPosition((position) => {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
-        dispatch(fetchUserGeolocation(latitude, longitude));
+        dispatch(recieveUserGeolocation(latitude, longitude));
       }, () => {
         dispatch(recieveUserGeolocationError());
       });
