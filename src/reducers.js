@@ -9,13 +9,13 @@ export function location(state, action) {
     case 'RECIEVE_LATLNG_ERROR':
       return state.set('isFetchingCoordinates', false);
     case 'ADD_LOCATION':
-      return state.locations.push(fromJS({
+      return state.set('locations', state.get('locations').push(fromJS({
         name: action.name,
         address: action.address,
         id: shortid.generate(),
         lat: action.lat,
         lng: action.lng,
-      }));
+      })));
     case 'REMOVE_LOCATION':
       for (let i = 0; i < state.locations.size; i++) {
         if (state.locations[i].get('id') === action.id) {
