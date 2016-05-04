@@ -31,7 +31,8 @@ export function insertLocationToState(name, address, lat, lng) {
 
 export function addLocation(name, address) {
   return (dispatch) => {
-    fetchLocationCoordinates();
+    dispatch(this.setSnackbarMessage('Adding location...'));
+    dispatch(fetchLocationCoordinates());
     return ajax.get('https://maps.googleapis.com/maps/api/geocode/json')
       .query({ address, key: 'AIzaSyBJuzpq0iVisIu1Log0SBtkye3LntrIcZI' })
       .end((error, response) => {
@@ -39,8 +40,10 @@ export function addLocation(name, address) {
           dispatch(recieveLocationCoordinates());
           const lat = response.body.results[0].geometry.location.lat;
           const lng = response.body.results[0].geometry.location.lng;
+          dispatch(this.setSnackbarMessage('Added location!'));
           dispatch(insertLocationToState(name, address, lat, lng));
         } else {
+          dispatch(this.setSnackbarMessage('Could not find the coordinates of your location!'));
           dispatch(recieveLocationCoordinatesError(error));
         }
       });
@@ -48,9 +51,12 @@ export function addLocation(name, address) {
 }
 
 export function removeLocation(id) {
-  return {
-    type: 'REMOVE_LOCATION',
-    id,
+  return (dispatch) => {
+    dispatch(this.setSnackbarMessage(`Location ${id} removed!`));
+    dispatch({
+      type: 'REMOVE_LOCATION',
+      id,
+    });
   };
 }
 
