@@ -2,6 +2,8 @@ import React from 'react';
 import AutoComplete from 'material-ui/lib/auto-complete';
 import { HOC } from 'formsy-react';
 
+import '../styles/partials/_m-FormsyAutoComplete__Menu';
+
 class FormsyAutoComplete extends React.Component {
 
   handleChange(value) { this.props.setValue(value); }
@@ -9,6 +11,7 @@ class FormsyAutoComplete extends React.Component {
   render() {
     return (
       <AutoComplete
+        menuProps={{ className: 'm-FormsyAutoComplete__Menu' }}
         filter={AutoComplete.noFilter}
         dataSource={this.props.options}
         onNewRequest={this.handleChange}
