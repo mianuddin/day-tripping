@@ -33,6 +33,9 @@ const mapDispatchToProps = (dispatch) => ({
   setMapCenter: (center) => {
     dispatch(Actions.setMapCenter(center));
   },
+  setMapBounds: (bounds) => {
+    dispatch(Actions.setMapBounds(bounds));
+  },
   fetchSuggestions: (query) => {
     dispatch(Actions.getSuggestions(query));
   },

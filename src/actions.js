@@ -1,3 +1,4 @@
+/* global google */
 import ajax from 'superagent';
 
 function fetchLocationCoordinates(address) {
@@ -31,11 +32,15 @@ function insertLocationToState(name, address, lat, lng) {
 }
 
 export function addLocation(name, address) {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const { map } = getState();
+    const bounds = map.bounds;
+
     dispatch(this.setSnackbarMessage('Adding location...'));
     dispatch(fetchLocationCoordinates(address));
+
     return ajax.get('https://maps.googleapis.com/maps/api/geocode/json')
-      .query({ address, key: 'AIzaSyBJuzpq0iVisIu1Log0SBtkye3LntrIcZI' })
+      .query({ address, bounds, key: 'AIzaSyBJuzpq0iVisIu1Log0SBtkye3LntrIcZI' })
       .end((error, response) => {
         if (!error
           && response
@@ -131,15 +136,20 @@ function recieveSuggestionsError(error) {
   };
 }
 
-/* global google */
 export function getSuggestions(query) {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const { map } = getState();
+
     dispatch(fetchSuggestions(query));
 
     const input = query !== '' ? query : ' ';
 
     const service = new google.maps.places.AutocompleteService();
-    service.getQueryPredictions({ input }, (predictions, status) => {
+    const request = {
+      input,
+      bounds: map.bounds,
+    };
+    service.getQueryPredictions(request, (predictions, status) => {
       if (status !== google.maps.places.PlacesServiceStatus.OK) {
         dispatch(recieveSuggestionsError(status));
         return;
@@ -167,5 +177,12 @@ export function setMapCenter(center) {
   return {
     type: 'SET_MAP_CENTER',
     center,
+  };
+}
+
+export function setMapBounds(bounds) {
+  return {
+    type: 'SET_MAP_BOUNDS',
+    bounds,
   };
 }

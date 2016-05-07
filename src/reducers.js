@@ -32,6 +32,8 @@ export function map(state, action) {
   switch (action.type) {
     case 'SET_MAP_CENTER':
       return state.set('center', fromJS(action.center));
+    case 'SET_MAP_BOUNDS':
+      return state.set('bounds', action.bounds);
     case 'FETCH_GEOLOCATION':
       return state.setIn(['geolocation', 'isFetching'], true);
     case 'RECIEVE_GEOLOCATION_SUCCESS':

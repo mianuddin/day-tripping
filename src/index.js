@@ -25,6 +25,7 @@ const initialState = fromJS({
       lat: 37.7749,
       lng: -122.4194,
     },
+    bounds: {},
     geolocation: {
       isFetching: false,
     },

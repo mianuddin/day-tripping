@@ -1,3 +1,4 @@
+/* global google */
 import React from 'react';
 import { GoogleMap, GoogleMapLoader, Marker } from 'react-google-maps';
 
@@ -9,9 +10,9 @@ class Gmap extends React.Component {
     super(props);
 
     this.handleMapCenterChanged = this.handleMapCenterChanged.bind(this);
+    this.handleMapBoundsChanged = this.handleMapBoundsChanged.bind(this);
   }
 
-  /* global google */
   handleMapCenterChanged() {
     const newPos = this.refs.map.getCenter();
     if (newPos.equals(new google.maps.LatLng(this.props.initialCenter))) {
@@ -22,6 +23,12 @@ class Gmap extends React.Component {
       lat: newPos.lat(),
       lng: newPos.lng(),
     });
+  }
+
+  handleMapBoundsChanged() {
+    const bounds = this.refs.map.getBounds();
+
+    this.props.setBounds(bounds);
   }
 
   render() {
@@ -47,10 +54,11 @@ class Gmap extends React.Component {
         }
         googleMapElement={
           <GoogleMap
-            ref={'map'}
+            ref="map"
             defaultZoom={14}
             center={this.props.center}
             onCenterChanged={this.handleMapCenterChanged}
+            onBoundsChanged={this.handleMapBoundsChanged}
             defaultOptions={{
               styles: MapStyle,
             }}
@@ -72,6 +80,7 @@ Gmap.propTypes = {
   initialCenter: React.PropTypes.object,
   center: React.PropTypes.object,
   setCenter: React.PropTypes.func,
+  setBounds: React.PropTypes.func,
 };
 
 export default Gmap;

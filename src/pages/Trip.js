@@ -18,6 +18,7 @@ class Trip extends React.Component {
             initialCenter={{ lat: 37.7749, lng: -122.4194 }}
             center={this.props.mapCenter}
             setCenter={this.props.setMapCenter}
+            setBounds={this.props.setMapBounds}
           />
         </div>
         <div id="OtherContainer" className="col-xs-12 col-md-6">
@@ -53,6 +54,7 @@ Trip.propTypes = {
   setSnackbarMessage: React.PropTypes.func,
   mapCenter: React.PropTypes.object,
   setMapCenter: React.PropTypes.func,
+  setMapBounds: React.PropTypes.func,
   autocompleteOptions: React.PropTypes.array,
   fetchSuggestions: React.PropTypes.func,
 };
