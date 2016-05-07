@@ -44,7 +44,10 @@ export function map(state, action) {
           lng: action.lng,
         },
       }));
-    case 'RECIEVE_GEOLOCATION_ERROR':
+    case 'RECIEVE_SUGGESTIONS_SUCCESS':
+      return state.set('autocompleteOptions', fromJS(action.suggestions));
+    case 'RECIEVE_SUGGESTIONS_ERROR':
+      return state.set('autocompleteOptions', fromJS([]));
     default:
       return state;
   }
