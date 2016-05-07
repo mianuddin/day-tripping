@@ -37,7 +37,9 @@ export function addLocation(name, address) {
     return ajax.get('https://maps.googleapis.com/maps/api/geocode/json')
       .query({ address, key: 'AIzaSyBJuzpq0iVisIu1Log0SBtkye3LntrIcZI' })
       .end((error, response) => {
-        if (!error && response && !(response.body.results[0] == null)) {
+        if (!error
+          && response
+          && !(response.body.results[0] == null)) { // eslint-disable-line eqeqeq
           dispatch(recieveLocationCoordinates());
           const lat = response.body.results[0].geometry.location.lat;
           const lng = response.body.results[0].geometry.location.lng;
