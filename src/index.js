@@ -28,6 +28,7 @@ const initialState = fromJS({
     geolocation: {
       isFetching: false,
     },
+    autocompleteOptions: [],
   },
   snackbar: {
     open: false,
