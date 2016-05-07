@@ -2,6 +2,7 @@ import React from 'react';
 
 import Formsy from 'formsy-react';
 import FormsyText from 'formsy-material-ui/lib/FormsyText';
+import AutoComplete from 'material-ui/lib/auto-complete';
 import FormsyAutoComplete from './FormsyAutoComplete';
 import RaisedButton from 'material-ui/lib/raised-button';
 
@@ -21,7 +22,7 @@ class Form extends React.Component {
     return (
       <Formsy.Form
         ref="form"
-        onValidSubmit={this.submitForm}
+        onSubmit={this.submitForm}
       >
         <div className="row">
           <div className="col-xs-12">
@@ -39,8 +40,9 @@ class Form extends React.Component {
               name="locationAddress"
               floatingLabelText="Location Address"
               validations="isExisty"
-              options={this.props.autocompleteOptions}
-              fetchSuggestions={this.props.fetchSuggestions}
+              dataSource={this.props.autocompleteOptions}
+              filter={AutoComplete.noFilter}
+              onUpdateInput={this.props.fetchSuggestions}
             />
           </div>
         </div>
