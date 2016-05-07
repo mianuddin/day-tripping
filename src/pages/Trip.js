@@ -25,6 +25,8 @@ class Trip extends React.Component {
             locations={this.props.locations}
             onRemove={this.props.removeLocation}
             handleSubmit={this.props.addLocation}
+            autocompleteOptions={this.props.autocompleteOptions}
+            fetchSuggestions={this.props.fetchSuggestions}
           />
         </div>
         <Snackbar
@@ -51,6 +53,8 @@ Trip.propTypes = {
   setSnackbarMessage: React.PropTypes.func,
   mapCenter: React.PropTypes.object,
   setMapCenter: React.PropTypes.func,
+  autocompleteOptions: React.PropTypes.array,
+  fetchSuggestions: React.PropTypes.func,
 };
 
 export default Trip;

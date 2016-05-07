@@ -4,8 +4,6 @@ import { HOC } from 'formsy-react';
 
 class FormsyAutocomplete extends React.Component {
 
-  onChange(e) { this.props.fetchSuggestions(e.target.value); }
-
   handleChange(value) { this.props.setValue(value); }
 
   render() {
@@ -15,17 +13,18 @@ class FormsyAutocomplete extends React.Component {
         triggerUpdateOnFocus
         dataSource={this.props.options}
         onNewRequest={this.handleChange}
-        onChange={this.props.onChange}
+        onUpdateInput={this.props.fetchSuggestions}
+        floatingLabelText={this.props.floatingLabelText}
       />
     );
   }
 }
 
 FormsyAutocomplete.propTypes = {
-  options: React.PropTypes.array,
+  options: React.PropTypes.array.isRequired,
   setValue: React.PropTypes.func.isRequired,
-  onChange: React.PropTypes.func,
   fetchSuggestions: React.PropTypes.func,
+  floatingLabelText: React.PropTypes.string,
 };
 
 export default HOC(FormsyAutocomplete);

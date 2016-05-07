@@ -10,6 +10,7 @@ function mapStateToProps(state) {
     isSnackbarOpen: state.getIn(['snackbar', 'open']),
     snackbarMessage: state.getIn(['snackbar', 'message']),
     mapCenter: state.getIn(['map', 'center']).toJS(),
+    autocompleteOptions: state.getIn(['map', 'autocompleteOptions']).toJS(),
   };
 }
 
@@ -31,6 +32,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   setMapCenter: (center) => {
     dispatch(Actions.setMapCenter(center));
+  },
+  fetchSuggestions: (query) => {
+    dispatch(Actions.getSuggestions(query));
   },
 });
 
