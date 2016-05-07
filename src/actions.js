@@ -1,25 +1,26 @@
 import ajax from 'superagent';
 
-export function fetchLocationCoordinates() {
+function fetchLocationCoordinates(address) {
   return {
     type: 'FETCHING_LATLNG',
+    address,
   };
 }
 
-export function recieveLocationCoordinates() {
+function recieveLocationCoordinates() {
   return {
     type: 'RECIEVE_LATLNG_SUCCESS',
   };
 }
 
-export function recieveLocationCoordinatesError(error) {
+function recieveLocationCoordinatesError(error) {
   return {
     type: 'RECIEVE_LATLNG_ERROR',
     error,
   };
 }
 
-export function insertLocationToState(name, address, lat, lng) {
+function insertLocationToState(name, address, lat, lng) {
   return {
     type: 'ADD_LOCATION',
     name,
@@ -32,7 +33,7 @@ export function insertLocationToState(name, address, lat, lng) {
 export function addLocation(name, address) {
   return (dispatch) => {
     dispatch(this.setSnackbarMessage('Adding location...'));
-    dispatch(fetchLocationCoordinates());
+    dispatch(fetchLocationCoordinates(address));
     return ajax.get('https://maps.googleapis.com/maps/api/geocode/json')
       .query({ address, key: 'AIzaSyBJuzpq0iVisIu1Log0SBtkye3LntrIcZI' })
       .end((error, response) => {
@@ -60,13 +61,13 @@ export function removeLocation(id) {
   };
 }
 
-export function fetchUserGeolocation() {
+function fetchUserGeolocation() {
   return {
     type: 'FETCH_GEOLOCATION',
   };
 }
 
-export function recieveUserGeolocation(lat, lng) {
+function recieveUserGeolocation(lat, lng) {
   return {
     type: 'RECIEVE_GEOLOCATION_SUCCESS',
     lat,
@@ -74,7 +75,7 @@ export function recieveUserGeolocation(lat, lng) {
   };
 }
 
-export function recieveUserGeolocationError(error) {
+function recieveUserGeolocationError(error) {
   return {
     type: 'RECIEVE_GEOLOCATION_ERROR',
     error,
@@ -99,6 +100,51 @@ export function getUserGeolocation() {
       dispatch(this.setSnackbarMessage('Could not detect your location!'));
       dispatch(recieveUserGeolocationError());
     }
+  };
+}
+
+
+function fetchSuggestions(query) {
+  return {
+    type: 'FETCHING_SUGGESTIONS',
+    query,
+  };
+}
+
+function recieveSuggestions(suggestions) {
+  const suggestionTextOnly = suggestions.map((suggestion) => (
+    suggestion.description
+  ));
+
+  return {
+    type: 'RECIEVE_SUGGESTIONS_SUCCESS',
+    suggestions: suggestionTextOnly,
+  };
+}
+
+function recieveSuggestionsError(error) {
+  return {
+    type: 'RECIEVE_SUGGESTIONS_ERROR',
+    error,
+  };
+}
+
+/* global google */
+export function getSuggestions(query) {
+  return (dispatch) => {
+    dispatch(fetchSuggestions(query));
+
+    const input = query !== '' ? query : ' ';
+
+    const service = new google.maps.places.AutocompleteService();
+    service.getQueryPredictions({ input }, (predictions, status) => {
+      if (status !== google.maps.places.PlacesServiceStatus.OK) {
+        dispatch(recieveSuggestionsError(status));
+        return;
+      }
+
+      dispatch(recieveSuggestions(predictions));
+    });
   };
 }
 
