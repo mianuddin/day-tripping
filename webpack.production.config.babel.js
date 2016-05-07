@@ -1,3 +1,4 @@
+import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 export default {
@@ -31,5 +32,10 @@ export default {
   },
   plugins: [
     new ExtractTextPlugin('css/bundle.css'),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      },
+    }),
   ],
 };
