@@ -7,7 +7,7 @@
     "start": "webpack-dev-server",
     "build": "webpack --config webpack.production.config.babel.js -p",
     "lint": "eslint src",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js 'test/**/*.@(js|jsx)'",
+    "test": "mocha --compilers js:babel-core/register --require ignore-styles ./test/test_helper.js 'test/**/*.@(js|jsx)'",
     "test:watch": "npm run test -- --watch"
   },
   "keywords": [],
@@ -31,6 +31,7 @@
     "eslint-config-airbnb": "^6.2.0",
     "eslint-plugin-react": "^4.3.0",
     "extract-text-webpack-plugin": "^1.0.1",
+    "ignore-styles": "^1.2.0",
     "jsdom": "^9.0.0",
     "json-loader": "^0.5.4",
     "mocha": "^2.4.5",
