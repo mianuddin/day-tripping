@@ -15,7 +15,7 @@ const LocationCard = props => (
     <CardActions>
       <FlatButton
         label="Remove"
-        onClick={props.onRemove.bind(this, props.location.id)}
+        onClick={props.onRemove.bind(this, props.location.id)} // eslint-disable-line
       />
     </CardActions>
   </Card>
