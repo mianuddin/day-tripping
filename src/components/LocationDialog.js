@@ -17,6 +17,7 @@ class LocationDialog extends React.Component {
   submitForm(data) {
     this.props.handleSubmit(data.locationName, data.locationAddress);
     this.refs.form.reset();
+    this.props.toggleDialog();
   }
 
   render() {
