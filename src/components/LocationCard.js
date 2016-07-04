@@ -6,8 +6,6 @@ import CardTitle from 'material-ui/lib/card/card-title';
 import FlatButton from 'material-ui/lib/flat-button';
 import CardText from 'material-ui/lib/card/card-text';
 
-import '../styles/partials/_LocationCard';
-
 const LocationCard = props => (
   <Card className="LocationCard">
     <CardTitle title={props.location.name} />

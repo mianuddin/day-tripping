@@ -4,8 +4,6 @@ import Gmap from '../components/Gmap';
 import AdaptableCardContainer from '../components/AdaptableCardContainer';
 import Snackbar from 'material-ui/lib/snackbar';
 
-import '../styles/partials/_Trip';
-
 class Trip extends React.Component {
   componentWillMount() {
     this.props.getUserGeolocation();

@@ -5,8 +5,6 @@ import FloatingActionButton from 'material-ui/lib/floating-action-button';
 import ContentAdd from 'material-ui/lib/svg-icons/content/add';
 // import Form from './Form';
 
-import '../styles/partials/_AdaptableCardContainer';
-
 const AdaptableCardContainer = props => (
   <div className="AdaptableCardContainer">
     <LocationContainer
