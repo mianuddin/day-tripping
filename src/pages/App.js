@@ -2,9 +2,8 @@ import React from 'react';
 import AppBar from 'material-ui/lib/app-bar';
 
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
-import MyRawTheme from '../styles/other/MUITealTheme';
+import MyRawTheme from '../styles/other/RedTheme';
 import '../styles/partials/_base';
-import '../styles/partials/_container';
 
 class App extends React.Component {
   getChildContext() {
@@ -19,6 +18,14 @@ class App extends React.Component {
         <AppBar
           title="Day Tripping"
           showMenuIconButton={false}
+          style={{
+            background: '#fff',
+            'border-bottom': '4px solid #F06161',
+          }}
+          titleStyle={{
+            color: '#2A363B',
+            'font-family': 'Poppins, sans-serif',
+          }}
         />
         {this.props.children}
       </div>
