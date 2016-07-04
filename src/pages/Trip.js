@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Gmap from '../components/Gmap';
-import AdaptableCardContainer from '../components/AdaptableCardContainer';
+import LocationContainer from '../components/LocationContainer';
 import Snackbar from 'material-ui/lib/snackbar';
 
 class Trip extends React.Component {
@@ -21,15 +21,14 @@ class Trip extends React.Component {
             setBounds={this.props.setMapBounds}
           />
         </div>
-        <div className="LocationContainer">
-          <AdaptableCardContainer
-            locations={this.props.locations}
-            onRemove={this.props.removeLocation}
-            handleSubmit={this.props.addLocation}
-            autocompleteOptions={this.props.autocompleteOptions}
-            fetchSuggestions={this.props.fetchSuggestions}
-          />
-        </div>
+        <LocationContainer
+          className="LocationContainer"
+          locations={this.props.locations}
+          onRemove={this.props.removeLocation}
+          handleSubmit={this.props.addLocation}
+          autocompleteOptions={this.props.autocompleteOptions}
+          fetchSuggestions={this.props.fetchSuggestions}
+        />
         <Snackbar
           open={this.props.isSnackbarOpen}
           message={this.props.snackbarMessage}

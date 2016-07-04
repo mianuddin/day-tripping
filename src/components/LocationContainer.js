@@ -1,23 +1,37 @@
 import React from 'react';
 
-import LocationCard from './LocationCard';
+import LocationList from './LocationList';
+import Paper from 'material-ui/lib/paper';
+import FloatingActionButton from 'material-ui/lib/floating-action-button';
+import ContentAdd from 'material-ui/lib/svg-icons/content/add';
+// import Form from './Form';
 
-const LocationContainer = (props) => (
-  <div>
-    {props.locations.map((location, index) => (
-      <LocationCard location={location} key={index} onRemove={props.onRemove} />
-    ))}
-    {
-      ! props.locations.length
-      ? <div className="LocationContainer__empty-state"><p>You have no locations. Try adding one!</p></div>
-      : null
-    }
-  </div>
+const LocationContainer = props => (
+  <Paper className="LocationContainer">
+    <LocationList
+      locations={props.locations}
+      onRemove={props.onRemove}
+    />
+    <div className="FloatingActionButton">
+      <FloatingActionButton>
+        <ContentAdd />
+      </FloatingActionButton>
+    </div>
+  </Paper>
 );
+
+// <Form
+//   handleSubmit={props.handleSubmit}
+//   autocompleteOptions={props.autocompleteOptions}
+//   fetchSuggestions={props.fetchSuggestions}
+// />
 
 LocationContainer.propTypes = {
   locations: React.PropTypes.array,
   onRemove: React.PropTypes.func,
+  handleSubmit: React.PropTypes.func,
+  autocompleteOptions: React.PropTypes.array,
+  fetchSuggestions: React.PropTypes.func,
 };
 
 export default LocationContainer;

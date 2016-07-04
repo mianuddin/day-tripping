@@ -12,9 +12,9 @@
 /* ==========================================================================
    Modules
    ========================================================================== */
-@import "_modules/AdaptableCardContainer",
-        "_modules/FloatingActionButton",
+@import "_modules/Trip",
         "_modules/GmapContainer",
-        "_modules/LocationCard",
         "_modules/LocationContainer",
-        "_modules/Trip";
+        "_modules/LocationList",
+        "_modules/LocationCard",
+        "_modules/FloatingActionButton";
