@@ -20,11 +20,11 @@ class App extends React.Component {
           showMenuIconButton={false}
           style={{
             background: '#fff',
-            'border-bottom': '4px solid #F06161',
+            borderBottom: '4px solid #F06161',
           }}
           titleStyle={{
             color: '#2A363B',
-            'font-family': 'Poppins, sans-serif',
+            fontFamily: 'Poppins, sans-serif',
           }}
         />
         {this.props.children}

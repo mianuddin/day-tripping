@@ -1,5 +1,6 @@
 .LocationCard {
-  margin: 1rem .25rem;
+  margin: 1rem .25rem 3rem .25rem;
+
   + .LocationCard {
     margin: .5rem .25rem;
   }
