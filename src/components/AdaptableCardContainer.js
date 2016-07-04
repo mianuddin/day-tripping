@@ -6,8 +6,7 @@ import Form from './Form';
 import '../styles/partials/_AdaptableCardContainer';
 
 const AdaptableCardContainer = props => (
-  <div id="AdaptableCardContainer">
-    <h2>Locations</h2>
+  <div className="AdaptableCardContainer">
     <LocationContainer
       locations={props.locations}
       onRemove={props.onRemove}

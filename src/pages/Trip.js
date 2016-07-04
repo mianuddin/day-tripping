@@ -4,6 +4,8 @@ import Gmap from '../components/Gmap';
 import AdaptableCardContainer from '../components/AdaptableCardContainer';
 import Snackbar from 'material-ui/lib/snackbar';
 
+import '../styles/partials/_Trip';
+
 class Trip extends React.Component {
   componentWillMount() {
     this.props.getUserGeolocation();
@@ -11,8 +13,8 @@ class Trip extends React.Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-xs-12 col-md-6" id="GmapContainer" styles="height:420px;width:50%">
+      <div className="Trip">
+        <div className="GmapContainer">
           <Gmap
             locations={this.props.locations}
             initialCenter={{ lat: 37.7749, lng: -122.4194 }}
@@ -21,7 +23,7 @@ class Trip extends React.Component {
             setBounds={this.props.setMapBounds}
           />
         </div>
-        <div id="OtherContainer" className="col-xs-12 col-md-6">
+        <div className="LocationContainer">
           <AdaptableCardContainer
             locations={this.props.locations}
             onRemove={this.props.removeLocation}

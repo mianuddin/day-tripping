@@ -20,9 +20,7 @@ class App extends React.Component {
           title="Day Tripping"
           showMenuIconButton={false}
         />
-        <div className="container">
-          {this.props.children}
-        </div>
+        {this.props.children}
       </div>
     );
   }

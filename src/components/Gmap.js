@@ -47,8 +47,7 @@ class Gmap extends React.Component {
         containerElement={
           <div
             style={{
-              height: '80vh',
-              margin: '1.46rem 0 1.168rem 0',
+              height: 'calc(100vh - 64px)',
             }}
           />
         }

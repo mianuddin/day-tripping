@@ -1,7 +1,6 @@
-#AdaptableCardContainer {
+.AdaptableCardContainer {
   display: flex;
   flex-direction: column;
-  height: 80vh;
   > {
     h2 {
       margin-bottom: .5rem;
