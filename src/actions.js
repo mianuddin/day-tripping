@@ -40,7 +40,7 @@ export function addLocation(name, address) {
     dispatch(fetchLocationCoordinates(address));
 
     return ajax.get('https://maps.googleapis.com/maps/api/geocode/json')
-      .query({ address, bounds, key: 'AIzaSyBJuzpq0iVisIu1Log0SBtkye3LntrIcZI' })
+      .query({ address, bounds, key: 'AIzaSyCVxP_vXzu6fM-5h7DmKU5ht1uBuU78FvQ' })
       .end((error, response) => {
         if (!error
           && response
