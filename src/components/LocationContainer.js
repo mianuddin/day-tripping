@@ -9,7 +9,7 @@ const LocationContainer = (props) => (
     ))}
     {
       ! props.locations.length
-      ? <div className="emptyState"><p>You have no locations. Try adding one!</p></div>
+      ? <div className="LocationContainer__empty-state"><p>You have no locations. Try adding one!</p></div>
       : null
     }
   </div>
