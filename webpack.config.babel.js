@@ -1,5 +1,4 @@
 import webpack from 'webpack';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 
 export default {
@@ -22,7 +21,7 @@ export default {
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('css!postcss-loader!sass'),
+        loader: 'style!css!postcss-loader!sass',
       },
     ],
   },
@@ -44,6 +43,5 @@ export default {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin('css/bundle.css'),
   ],
 };
