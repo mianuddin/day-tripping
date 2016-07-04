@@ -11,8 +11,8 @@ const LocationItem = props => {
   const iconButtonElement = (
     <IconButton
       touch
-      tooltip="more"
-      tooltipPosition="bottom-left"
+      tooltip="More options"
+      tooltipPosition="top-left"
     >
       <MoreVertIcon color={Colors.grey400} />
     </IconButton>
