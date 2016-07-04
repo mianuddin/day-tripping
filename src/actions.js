@@ -186,3 +186,9 @@ export function setMapBounds(bounds) {
     bounds,
   };
 }
+
+export function toggleDialog() {
+  return {
+    type: 'TOGGLE_DIALOG',
+  };
+}

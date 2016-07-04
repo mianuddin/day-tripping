@@ -35,6 +35,9 @@ const initialState = fromJS({
     open: false,
     message: '',
   },
+  dialog: {
+    open: false,
+  },
 });
 
 const store = createStore(

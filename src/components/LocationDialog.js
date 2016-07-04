@@ -4,9 +4,10 @@ import Formsy from 'formsy-react';
 import FormsyText from 'formsy-material-ui/lib/FormsyText';
 import AutoComplete from 'material-ui/lib/auto-complete';
 import FormsyAutoComplete from './FormsyAutoComplete';
+import Dialog from 'material-ui/lib/dialog';
 import RaisedButton from 'material-ui/lib/raised-button';
 
-class Form extends React.Component {
+class LocationDialog extends React.Component {
   constructor(props) {
     super(props);
 
@@ -20,21 +21,33 @@ class Form extends React.Component {
 
   render() {
     return (
-      <Formsy.Form
-        ref="form"
-        onSubmit={this.submitForm}
+      <Dialog
+        title="Add a location"
+        modal={false}
+        onRequestClose={this.props.toggleDialog}
+        open={this.props.isDialogOpen}
+        bodyStyle={{
+          padding: '0',
+        }}
       >
-        <div className="row">
-          <div className="col-xs-12">
+        <Formsy.Form
+          ref="form"
+          onSubmit={this.submitForm}
+        >
+          <div className="LocationDialog__Inputs">
             <FormsyText
               required
               name="locationName"
               hintText="SF City Hall"
               floatingLabelText="Location Name"
               validations="isExisty"
+              style={{
+                width: '100%',
+              }}
             />
-          </div>
-          <div className="col-xs-12">
+
+            <br />
+
             <FormsyAutoComplete
               required
               name="locationAddress"
@@ -43,25 +56,30 @@ class Form extends React.Component {
               dataSource={this.props.autocompleteOptions}
               filter={AutoComplete.noFilter}
               onUpdateInput={this.props.fetchSuggestions}
+              style={{
+                width: '100%',
+              }}
             />
           </div>
-        </div>
-        <div className="row">
-          <RaisedButton
-            type="submit"
-            label="Submit"
-            primary
-          />
-        </div>
-      </Formsy.Form>
+          <div className="LocationDialog__Actions">
+            <RaisedButton
+              type="submit"
+              label="Submit"
+              primary
+            />
+          </div>
+        </Formsy.Form>
+      </Dialog>
     );
   }
 }
 
-Form.propTypes = {
+LocationDialog.propTypes = {
   handleSubmit: React.PropTypes.func,
   autocompleteOptions: React.PropTypes.array,
   fetchSuggestions: React.PropTypes.func,
+  isDialogOpen: React.PropTypes.bool,
+  toggleDialog: React.PropTypes.func,
 };
 
-export default Form;
+export default LocationDialog;

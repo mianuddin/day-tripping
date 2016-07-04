@@ -65,3 +65,12 @@ export function snackbar(state, action) {
       return state;
   }
 }
+
+export function dialog(state, action) {
+  switch (action.type) {
+    case 'TOGGLE_DIALOG':
+      return state.set('open', !state.get('open'));
+    default:
+      return state;
+  }
+}
