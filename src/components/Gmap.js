@@ -2,7 +2,7 @@
 import React from 'react';
 import { GoogleMap, GoogleMapLoader, Marker } from 'react-google-maps';
 
-import MapStyle from '../styles/other/UltraWhiteWithLabels.json';
+import MapStyle from '../styles/other/EvenLighter.json';
 
 class Gmap extends React.Component {
   constructor(props) {
