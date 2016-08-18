@@ -1,5 +1,4 @@
 import React from 'react';
-import AppBar from 'material-ui/lib/app-bar';
 
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
 import MyRawTheme from '../styles/other/RedTheme';
@@ -16,18 +15,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <AppBar
-          title="Day Tripping"
-          showMenuIconButton={false}
-          style={{
-            background: '#fff',
-            borderBottom: '4px solid #F06161',
-          }}
-          titleStyle={{
-            color: '#2A363B',
-            fontFamily: 'Poppins, sans-serif',
-          }}
-        />
         {this.props.children}
       </div>
     );

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Gmap from '../components/Gmap';
+import AppBar from 'material-ui/lib/app-bar';
 import LocationContainer from '../components/LocationContainer';
 import Snackbar from 'material-ui/lib/snackbar';
 
@@ -11,32 +12,44 @@ class Trip extends React.Component {
 
   render() {
     return (
-      <div className="Trip">
-        <div className="GmapContainer">
-          <Gmap
+      <div>
+        <AppBar
+          title="Day Tripping"
+          style={{
+            background: '#F06161',
+          }}
+          titleStyle={{
+            color: '#FFF',
+            fontFamily: 'Poppins, sans-serif',
+          }}
+        />
+        <div className="Trip">
+          <div className="GmapContainer">
+            <Gmap
+              locations={this.props.locations}
+              initialCenter={{ lat: 37.7749, lng: -122.4194 }}
+              center={this.props.mapCenter}
+              setCenter={this.props.setMapCenter}
+              setBounds={this.props.setMapBounds}
+            />
+          </div>
+          <LocationContainer
+            className="LocationContainer"
             locations={this.props.locations}
-            initialCenter={{ lat: 37.7749, lng: -122.4194 }}
-            center={this.props.mapCenter}
-            setCenter={this.props.setMapCenter}
-            setBounds={this.props.setMapBounds}
+            onRemove={this.props.removeLocation}
+            handleSubmit={this.props.addLocation}
+            autocompleteOptions={this.props.autocompleteOptions}
+            fetchSuggestions={this.props.fetchSuggestions}
+            isDialogOpen={this.props.isDialogOpen}
+            toggleDialog={this.props.toggleDialog}
+          />
+          <Snackbar
+            open={this.props.isSnackbarOpen}
+            message={this.props.snackbarMessage}
+            autoHideDuration={3000}
+            onRequestClose={this.props.toggleSnackbar}
           />
         </div>
-        <LocationContainer
-          className="LocationContainer"
-          locations={this.props.locations}
-          onRemove={this.props.removeLocation}
-          handleSubmit={this.props.addLocation}
-          autocompleteOptions={this.props.autocompleteOptions}
-          fetchSuggestions={this.props.fetchSuggestions}
-          isDialogOpen={this.props.isDialogOpen}
-          toggleDialog={this.props.toggleDialog}
-        />
-        <Snackbar
-          open={this.props.isSnackbarOpen}
-          message={this.props.snackbarMessage}
-          autoHideDuration={3000}
-          onRequestClose={this.props.toggleSnackbar}
-        />
       </div>
     );
   }
