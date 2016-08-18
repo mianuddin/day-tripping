@@ -74,3 +74,28 @@ export function dialog(state, action) {
       return state;
   }
 }
+
+export function auth(state, action) {
+  switch (action.type) {
+    case 'ATTEMPTING_LOGIN':
+      return state.merge(fromJS({
+        currently: 'AWAITING_AUTH_RESPONSE',
+        username: 'guest',
+        uid: 'null',
+      }));
+    case 'LOGOUT':
+      return state.merge(fromJS({
+        currently: 'ANONYMOUS',
+        username: 'guest',
+        uid: 'null',
+      }));
+    case 'LOGIN_USER':
+      return state.merge(fromJS({
+        currently: 'LOGGED_IN',
+        username: action.username,
+        uid: action.uid,
+      }));
+    default:
+      return state;
+  }
+}
