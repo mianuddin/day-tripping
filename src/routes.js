@@ -1,16 +1,16 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import App from './pages/App';
+import SmartApp from './pages/SmartApp';
 import SmartTrip from './pages/SmartTrip';
 import SmartSignIn from './pages/SmartSignIn';
 
 const routes = (
   <Route>
-    <Route component={ App }>
-      <Route path="/app" component={ SmartTrip } />
+    <Route path="/" component={ SmartSignIn } />
+    <Route path="/app" component={ SmartApp }>
+      <IndexRoute component={ SmartTrip } />
     </Route>
-    <Route path="/sign-in" component={ SmartSignIn } />
   </Route>
 );
 
