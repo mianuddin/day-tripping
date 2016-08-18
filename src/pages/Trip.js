@@ -4,13 +4,56 @@ import Gmap from '../components/Gmap';
 import AppBar from 'material-ui/lib/app-bar';
 import LocationContainer from '../components/LocationContainer';
 import Snackbar from 'material-ui/lib/snackbar';
+import Popover from 'material-ui/lib/popover/popover';
+import FlatButton from 'material-ui/lib/flat-button';
 
 class Trip extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      open: false,
+    };
+  }
+
   componentWillMount() {
     this.props.getUserGeolocation();
   }
 
+  handleTouchTap(event) {
+    this.setState({
+      open: true,
+      anchorEl: event.currentTarget,
+    });
+  }
+
+  handleRequestClose() {
+    this.setState({
+      open: false,
+    });
+  }
+
   render() {
+    const AppBarDropdown = (
+      <div>
+        <FlatButton
+          onTouchTap={this.handleTouchTap.bind(this)}
+          label={this.props.authDetails.username}
+        />
+        <Popover
+          open={this.state.open}
+          anchorEl={this.state.anchorEl}
+          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+          targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+          onRequestClose={this.handleRequestClose.bind(this)}
+        >
+          <div>
+            <FlatButton primary label="Here is a button" />
+          </div>
+        </Popover>
+      </div>
+    );
+
     return (
       <div>
         <AppBar
@@ -22,6 +65,7 @@ class Trip extends React.Component {
             color: '#FFF',
             fontFamily: 'Poppins, sans-serif',
           }}
+          iconElementRight={AppBarDropdown}
         />
         <div className="Trip">
           <div className="GmapContainer">
@@ -73,6 +117,7 @@ Trip.propTypes = {
   fetchSuggestions: React.PropTypes.func,
   isDialogOpen: React.PropTypes.bool,
   toggleDialog: React.PropTypes.func,
+  authDetails: React.PropTypes.object,
 };
 
 export default Trip;
