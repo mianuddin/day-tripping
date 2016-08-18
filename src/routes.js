@@ -3,12 +3,12 @@ import { Route, IndexRoute } from 'react-router';
 
 import App from './pages/App';
 import SmartTrip from './pages/SmartTrip';
-import SignIn from './pages/SignIn';
+import SmartSignIn from './pages/SmartSignIn';
 
 const routes = (
   <Route path="/" component={ App }>
     <IndexRoute component={ SmartTrip } />
-    <Route path="sign-in" component={ SignIn } />
+    <Route path="sign-in" component={ SmartSignIn } />
   </Route>
 );
 
