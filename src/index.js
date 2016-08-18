@@ -38,6 +38,11 @@ const initialState = fromJS({
   dialog: {
     open: false,
   },
+  auth: {
+    currently: 'ANONYMOUS',
+    username: null,
+    uid: null,
+  },
 });
 
 const store = createStore(
