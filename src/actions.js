@@ -192,3 +192,52 @@ export function toggleDialog() {
     type: 'TOGGLE_DIALOG',
   };
 }
+
+import firebase from 'firebase';
+
+const config = {
+  apiKey: 'AIzaSyChHIxDfFXyI5OdNe1xJGdoWpLAx1_4_ZU',
+  authDomain: 'day-tripping.firebaseapp.com',
+  databaseURL: 'https://day-tripping.firebaseio.com',
+  storageBucket: 'day-tripping.appspot.com',
+};
+
+firebase.initializeApp(config);
+
+export function startListeningToAuth() {
+  return (dispatch, getState) => {
+    const { auth } = getState();
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        dispatch({
+          type: 'LOGIN_USER',
+          username: user.displayName,
+          uid: user.uid,
+        });
+      } else {
+        if (auth.currently !== 'ANONYMOUS') { // log out if not already logged out
+          dispatch({ type: 'LOGOUT' });
+        }
+      }
+    });
+  };
+}
+
+export function attemptLogin() {
+  return (dispatch) => {
+    dispatch({ type: 'ATTEMPTING_LOGIN' });
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider)
+    .catch((error) => {
+      dispatch({ type: 'DISPLAY_ERROR', error: `Login failed: ${error.message}` });
+      dispatch({ type: 'LOGOUT' });
+    });
+  };
+}
+
+export function logoutUser() {
+  return (dispatch) => {
+    dispatch({ type: 'LOGOUT' });
+    firebase.auth().signOut();
+  };
+}
