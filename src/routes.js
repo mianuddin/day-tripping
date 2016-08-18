@@ -6,9 +6,11 @@ import SmartTrip from './pages/SmartTrip';
 import SmartSignIn from './pages/SmartSignIn';
 
 const routes = (
-  <Route path="/" component={ App }>
-    <IndexRoute component={ SmartTrip } />
-    <Route path="sign-in" component={ SmartSignIn } />
+  <Route>
+    <Route component={ App }>
+      <Route path="/app" component={ SmartTrip } />
+    </Route>
+    <Route path="/sign-in" component={ SmartSignIn } />
   </Route>
 );
 
