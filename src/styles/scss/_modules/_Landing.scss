@@ -4,8 +4,12 @@ $heroHeight: 64vh;
 $remainderHeight: calc(100vh - (64px + #{$heroHeight}));
 
 .Hero {
-  background: center center no-repeat;
+  background: 50% no-repeat;
   min-height: 33vh;
+
+  @media (max-width: 768px) {
+    background: 30% no-repeat;
+  }
 }
 
 .Hero--height {
