@@ -38,23 +38,13 @@ class App extends React.Component {
 
   render() {
     const AppBarDropdown = (
-      <div>
-        <FlatButton
-          onTouchTap={this.handleTouchTap.bind(this)}
-          label={this.props.authDetails.username}
-        />
-        <Popover
-          open={this.state.open}
-          anchorEl={this.state.anchorEl}
-          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-          targetOrigin={{ horizontal: 'right', vertical: 'top' }}
-          onRequestClose={this.handleRequestClose.bind(this)}
-        >
-          <div>
-            <FlatButton label="Log Out" onClick={this.props.logoutUser} />
-          </div>
-        </Popover>
-      </div>
+      <FlatButton
+        onTouchTap={this.handleTouchTap.bind(this)}
+        label={this.props.authDetails.username}
+        style={{
+          color: '#ffffff',
+        }}
+      />
     );
 
     return (
@@ -70,6 +60,17 @@ class App extends React.Component {
           }}
           iconElementRight={AppBarDropdown}
         />
+        <Popover
+          open={this.state.open}
+          anchorEl={this.state.anchorEl}
+          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+          targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+          onRequestClose={this.handleRequestClose.bind(this)}
+        >
+          <div>
+            <FlatButton label="Log Out" onClick={this.props.logoutUser} />
+          </div>
+        </Popover>
         {this.props.children}
       </div>
     );
