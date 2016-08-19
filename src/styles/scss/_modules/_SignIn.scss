@@ -8,6 +8,7 @@ body {
 .hero {
   background: center center no-repeat;
   min-height: 33vh;
+  margin-bottom: 32px;
 }
 
 .hero--height {
@@ -21,4 +22,10 @@ body {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -1px;
+
+  @media (max-width: 768px) {
+    font-size: 4em;
+    word-spacing: 50vw;
+    line-height: 1;
+  }
 }

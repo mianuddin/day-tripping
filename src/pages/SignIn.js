@@ -33,7 +33,9 @@ class SignIn extends React.Component {
           />
           <div className="container hero--height">
             <div className="row center-xs middle-xs hero--height">
-              <span className="headline">Explore your world</span>
+              <div className="col-xs-12">
+                <span className="headline">Explore your world</span>
+              </div>
             </div>
           </div>
         </header>
