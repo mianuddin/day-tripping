@@ -6,6 +6,7 @@ export default {
   entry: [
     './src/index.js',
   ],
+  devtool: 'cheap-module-source-map',
   module: {
     loaders: [
       {
