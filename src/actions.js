@@ -218,6 +218,7 @@ export function startListeningToAuth() {
           uid: user.uid,
         });
       } else {
+        hashHistory.push('/');
         if (auth.currently !== 'ANONYMOUS') { // log out if not already logged out
           dispatch({ type: 'LOGOUT' });
         }

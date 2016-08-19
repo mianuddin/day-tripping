@@ -51,7 +51,7 @@ class App extends React.Component {
           onRequestClose={this.handleRequestClose.bind(this)}
         >
           <div>
-            <FlatButton primary label="Here is a button" />
+            <FlatButton label="Log Out" onClick={this.props.logoutUser} />
           </div>
         </Popover>
       </div>
