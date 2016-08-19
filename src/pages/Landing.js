@@ -4,10 +4,6 @@ import RaisedButton from 'material-ui/lib/raised-button';
 
 import '../styles/scss/_modules/_Landing.scss';
 
-const style = {
-  margin: '1rem',
-};
-
 const Landing = (props) => (
   <div>
     <header
@@ -42,7 +38,13 @@ const Landing = (props) => (
           <span className="Remainder__tagline">
             Easily keep track of the places you want to be, for free.
           </span><br />
-          <RaisedButton label="Get Started" style={style} onClick={props.attemptLogin} />
+          <RaisedButton
+            label="Get Started"
+            style={{
+              margin: '1rem',
+            }}
+            onClick={props.attemptLogin}
+          />
         </div>
       </div>
     </div>
