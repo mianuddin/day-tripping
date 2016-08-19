@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "webpack --config webpack.production.config.babel.js -p",
+    "build": "webpack --config webpack.production.config.babel.js --production",
     "lint": "eslint src",
     "test": "mocha --compilers js:babel-core/register --require ignore-styles ./test/test_helper.js 'test/**/*.@(js|jsx)'",
     "test:watch": "npm run test -- --watch"
