@@ -193,6 +193,8 @@ export function toggleDialog() {
   };
 }
 
+import { hashHistory } from 'react-router';
+
 import firebase from 'firebase';
 
 const config = {
@@ -209,6 +211,7 @@ export function startListeningToAuth() {
     const { auth } = getState();
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        hashHistory.push('/app');
         dispatch({
           type: 'LOGIN_USER',
           username: user.displayName,
