@@ -1,20 +1,18 @@
 @import "../_base/variables";
 
-body {
-  background: $color_brand;
-  font-size: 16px;
-}
+$heroHeight: 64vh;
+$remainderHeight: calc(100vh - (64px + #{$heroHeight}));
 
-.hero {
+.Hero {
   background: center center no-repeat;
   min-height: 33vh;
 }
 
-.hero--height {
-  height: 64vh;
+.Hero--height {
+  height: $heroHeight;
 }
 
-.headline {
+.Hero__Headline {
   color: #fff;
   font-family: 'Poppins', sans-serif;
   font-size: 6vw;
@@ -29,11 +27,11 @@ body {
   }
 }
 
-.signInContent--height {
-  height: calc(100vh - (64px + 64vh));
+.Remainder--height {
+  height: $remainderHeight;
 }
 
-.tagline {
+.Remainder__tagline {
   color: #fff;
   font-size: 1.5em;
 }

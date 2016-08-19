@@ -1,4 +1,4 @@
-import SignIn from './SignIn';
+import Landing from './Landing';
 import { connect } from 'react-redux';
 import * as Actions from '../actions.js';
 
@@ -17,9 +17,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-const SmartSignIn = connect(
+const SmartLanding = connect(
   mapStateToProps,
   mapDispatchToProps
-)(SignIn);
+)(Landing);
 
-export default SmartSignIn;
+export default SmartLanding;
