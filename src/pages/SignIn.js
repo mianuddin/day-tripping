@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 import '../styles/scss/_modules/_SignIn.scss';
 
 const style = {
-  margin: 12,
+  margin: '1rem',
 };
 
 class SignIn extends React.Component {
@@ -39,9 +39,10 @@ class SignIn extends React.Component {
             </div>
           </div>
         </header>
-        <div className="container">
-          <div className="row center-xs">
+        <div className="container signInContent--height">
+          <div className="row center-xs middle-xs signInContent--height">
             <div className="col-xs">
+              <span className="tagline">Easily keep track of the places you want to be, for free.</span><br />
               <RaisedButton label="Get Started" style={style} onClick={this.props.attemptLogin} />
             </div>
           </div>

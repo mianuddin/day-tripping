@@ -8,11 +8,10 @@ body {
 .hero {
   background: center center no-repeat;
   min-height: 33vh;
-  margin-bottom: 32px;
 }
 
 .hero--height {
-  min-height: 52vh;
+  height: 64vh;
 }
 
 .headline {
@@ -28,4 +27,13 @@ body {
     word-spacing: 50vw;
     line-height: 1;
   }
+}
+
+.signInContent--height {
+  height: calc(100vh - (64px + 64vh));
+}
+
+.tagline {
+  color: #fff;
+  font-size: 1.5em;
 }
