@@ -2,4 +2,23 @@
 
 body {
   background: $color_brand;
+  font-size: 16px;
+}
+
+.hero {
+  background: center center no-repeat;
+  min-height: 33vh;
+}
+
+.hero--height {
+  min-height: 52vh;
+}
+
+.headline {
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 6vw;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -1px;
 }

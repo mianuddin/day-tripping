@@ -13,42 +13,34 @@ class SignIn extends React.Component {
   render() {
     return (
       <div>
-        <AppBar
-          title="Day Tripping"
-          showMenuIconButton={false}
+        <header
+          className="hero"
           style={{
-            background: '#F06161',
-            boxShadow: 'none',
+            backgroundImage: 'url(img/map.png)',
           }}
-          titleStyle={{
-            color: '#FFF',
-            fontFamily: 'Poppins, sans-serif',
-          }}
-        />
-        <div className="container">
-          <div className="row center-xs">
-            <h2>Sign in</h2>
+        >
+          <AppBar
+            title="Day Tripping"
+            showMenuIconButton={false}
+            style={{
+              background: 'none',
+              boxShadow: 'none',
+            }}
+            titleStyle={{
+              color: '#FFF',
+              fontFamily: 'Poppins, sans-serif',
+            }}
+          />
+          <div className="container hero--height">
+            <div className="row center-xs middle-xs hero--height">
+              <span className="headline">Explore your world</span>
+            </div>
           </div>
-
+        </header>
+        <div className="container">
           <div className="row center-xs">
             <div className="col-xs">
               <RaisedButton label="Get Started" style={style} onClick={this.props.attemptLogin} />
-            </div>
-          </div>
-
-          <div className="row center-xs">
-            <div className="col-xs">
-              <Link to="/app">
-                <RaisedButton label="App" primary style={style} />
-              </Link>
-              <RaisedButton label="Log Out" secondary style={style} onClick={this.props.logoutUser} />
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="col-xs">
-              <h3>Debug</h3>
-              <p>{JSON.stringify(this.props.auth)}</p>
             </div>
           </div>
         </div>
