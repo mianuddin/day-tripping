@@ -1,1 +1,1 @@
-# ![day-tripping](https://i.imgur.com/f5DuAdk.png)
+# ![day-tripping](http://i.imgur.com/DaU4g8J.png)
