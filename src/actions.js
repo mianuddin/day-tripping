@@ -1,5 +1,16 @@
 /* global google */
 import ajax from 'superagent';
+import { hashHistory } from 'react-router';
+import firebase from 'firebase';
+
+const config = {
+  apiKey: 'AIzaSyChHIxDfFXyI5OdNe1xJGdoWpLAx1_4_ZU',
+  authDomain: 'day-tripping.firebaseapp.com',
+  databaseURL: 'https://day-tripping.firebaseio.com',
+  storageBucket: 'day-tripping.appspot.com',
+};
+
+firebase.initializeApp(config);
 
 function fetchLocationCoordinates(address) {
   return {
@@ -193,20 +204,7 @@ export function toggleDialog() {
   };
 }
 
-import { hashHistory } from 'react-router';
-
-import firebase from 'firebase';
-
-const config = {
-  apiKey: 'AIzaSyChHIxDfFXyI5OdNe1xJGdoWpLAx1_4_ZU',
-  authDomain: 'day-tripping.firebaseapp.com',
-  databaseURL: 'https://day-tripping.firebaseio.com',
-  storageBucket: 'day-tripping.appspot.com',
-};
-
-firebase.initializeApp(config);
-
-export function startListeningToAuth() {
+export function listenToAuth() {
   return (dispatch, getState) => {
     const { auth } = getState();
     firebase.auth().onAuthStateChanged((user) => {

@@ -10,7 +10,7 @@ import { combineReducers } from 'redux-immutable';
 import * as reducers from './reducers';
 import routes from './routes';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { startListeningToAuth } from './actions';
+import { listenToAuth } from './actions';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -67,5 +67,5 @@ ReactDOM.render(
 );
 
 setTimeout(() => {
-  store.dispatch(startListeningToAuth());
+  store.dispatch(listenToAuth());
 });
