@@ -15,6 +15,9 @@ class App extends React.Component {
     this.state = {
       open: false,
     };
+
+    this.handleTouchTap = this.handleTouchTap.bind(this);
+    this.handleRequestClose = this.handleRequestClose.bind(this);
   }
 
   getChildContext() {
@@ -40,11 +43,9 @@ class App extends React.Component {
   render() {
     const AppBarDropdown = (
       <FlatButton
-        onTouchTap={this.handleTouchTap.bind(this)}
-        label={this.props.authDetails.username}
-        style={{
-          color: '#ffffff',
-        }}
+        label={this.props.authDetails.username || 'Loading...'}
+        onTouchTap={this.handleTouchTap}
+        style={{ color: '#ffffff' }}
       />
     );
 
@@ -66,7 +67,7 @@ class App extends React.Component {
           anchorEl={this.state.anchorEl}
           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           targetOrigin={{ horizontal: 'right', vertical: 'top' }}
-          onRequestClose={this.handleRequestClose.bind(this)}
+          onRequestClose={this.handleRequestClose}
         >
           <div>
             <FlatButton label="Log Out" onClick={this.props.logoutUser} />
