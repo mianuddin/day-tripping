@@ -24,6 +24,7 @@ class App extends React.Component {
   }
 
   handleTouchTap(event) {
+    event.preventDefault();
     this.setState({
       open: true,
       anchorEl: event.currentTarget,
