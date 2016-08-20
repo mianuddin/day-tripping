@@ -62,7 +62,7 @@ export function addLocation(name, address) {
           dispatch(this.setSnackbarMessage('Added location!'));
           dispatch(insertLocationToState(name, address, lat, lng));
         } else {
-          dispatch(this.setSnackbarMessage('Could not find the coordinates of your location!'));
+          dispatch(this.setSnackbarMessage('Couldn\'t find the coordinates of your location!'));
           dispatch(recieveLocationCoordinatesError(error));
         }
       });
@@ -102,20 +102,20 @@ function recieveUserGeolocationError(error) {
 
 export function getUserGeolocation() {
   return (dispatch) => {
-    dispatch(this.setSnackbarMessage('Requesting geolocation...'));
+    dispatch(this.setSnackbarMessage('Searching for your location...'));
     dispatch(fetchUserGeolocation());
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
-        dispatch(this.setSnackbarMessage('Recieved geolocation.'));
+        dispatch(this.setSnackbarMessage('Found your location!'));
         dispatch(recieveUserGeolocation(latitude, longitude));
       }, () => {
-        dispatch(this.setSnackbarMessage('Could not detect your location!'));
+        dispatch(this.setSnackbarMessage('Couldn\'t detect your location!'));
         dispatch(recieveUserGeolocationError());
       });
     } else {
-      dispatch(this.setSnackbarMessage('Could not detect your location!'));
+      dispatch(this.setSnackbarMessage('Couldn\'t detect your location!'));
       dispatch(recieveUserGeolocationError());
     }
   };
