@@ -209,7 +209,23 @@ export function listenToAuth() {
     const { auth } = getState();
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        const userId = firebase.auth().currentUser.uid;
+        firebase.database().ref(`/users/${userId}`).once('value').then((snapshot) => {
+          if (snapshot.val() === null) {
+            firebase.database().ref(`/users/${userId}`).set({
+              displayName: firebase.auth().currentUser.displayName,
+              count: 0,
+            });
+          } else {
+            const newCount = snapshot.val().count + 1;
+            firebase.database().ref(`/users/${userId}`).update({
+              count: newCount,
+            });
+          }
+        });
+
         hashHistory.push('/app');
+
         dispatch({
           type: 'LOGIN_USER',
           username: user.displayName,
