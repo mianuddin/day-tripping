@@ -44,11 +44,7 @@ class Gmap extends React.Component {
     return (
       <GoogleMapLoader
         containerElement={
-          <div
-            style={{
-              height: 'calc(100vh - 64px)',
-            }}
-          />
+          <div />
         }
         googleMapElement={
           <GoogleMap
