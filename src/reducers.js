@@ -1,5 +1,4 @@
 import { fromJS } from 'immutable';
-import shortid from 'shortid';
 
 export function location(state, action) {
   switch (action.type) {
@@ -12,7 +11,7 @@ export function location(state, action) {
       return state.set('locations', state.get('locations').push(fromJS({
         name: action.name,
         address: action.address,
-        id: shortid.generate(),
+        id: action.id,
         lat: action.lat,
         lng: action.lng,
       })));
@@ -82,12 +81,14 @@ export function auth(state, action) {
         currently: 'AWAITING_AUTH_RESPONSE',
         username: 'guest',
         uid: 'null',
+        listId: 'null',
       }));
     case 'LOGOUT':
       return state.merge(fromJS({
         currently: 'ANONYMOUS',
         username: 'guest',
         uid: 'null',
+        listId: 'null',
       }));
     case 'LOGIN_USER':
       return state.merge(fromJS({

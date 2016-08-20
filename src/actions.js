@@ -33,20 +33,23 @@ function recieveLocationCoordinatesError(error) {
   };
 }
 
-function insertLocationToState(name, address, lat, lng) {
+function insertLocationToState(name, address, lat, lng, id) {
   return {
     type: 'ADD_LOCATION',
     name,
     address,
     lat,
     lng,
+    id,
   };
 }
 
 export function addLocation(name, address) {
   return (dispatch, getState) => {
-    const { map } = getState();
+    const { map, auth } = getState().toJS();
     const bounds = map.bounds;
+    const listId = auth.listId;
+    const locationId = shortid.generate();
 
     dispatch(this.setSnackbarMessage('Adding location...'));
     dispatch(fetchLocationCoordinates(address));
@@ -61,7 +64,8 @@ export function addLocation(name, address) {
           const lat = response.body.results[0].geometry.location.lat;
           const lng = response.body.results[0].geometry.location.lng;
           dispatch(this.setSnackbarMessage('Added location!'));
-          dispatch(insertLocationToState(name, address, lat, lng));
+          firebase.database().ref(`/list/${listId}`).push({ name, address, lat, lng, locationId });
+          dispatch(insertLocationToState(name, address, lat, lng, locationId));
         } else {
           dispatch(this.setSnackbarMessage('Couldn\'t find the coordinates of your location!'));
           dispatch(recieveLocationCoordinatesError(error));
@@ -233,6 +237,13 @@ export function listenToAuth() {
             username: firebase.auth().currentUser.displayName,
             uid: firebase.auth().currentUser.uid,
             listId,
+          });
+        });
+
+        firebase.database().ref('/list').once('value').then((snapshot) => {
+          snapshot.child(listId).forEach((childSnapshot) => {
+            const location = childSnapshot.val();
+            dispatch(insertLocationToState(location.name, location.address, location.lat, location.lng, location.locationId));
           });
 
           hashHistory.push('/app');
