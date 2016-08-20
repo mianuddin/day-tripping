@@ -55,12 +55,12 @@ export function map(state, action) {
   }
 }
 
-export function snackbar(state, action) {
+export function app(state, action) {
   switch (action.type) {
     case 'TOGGLE_SNACKBAR':
-      return state.set('open', !state.get('open'));
+      return state.setIn(['snackbar', 'open'], !state.get(['snackbar', 'open']));
     case 'SET_SNACKBAR_MESSAGE':
-      return state.set('message', action.message).set('open', true);
+      return state.setIn(['snackbar', 'message'], action.message).setIn(['snackbar', 'open'], true);
     default:
       return state;
   }

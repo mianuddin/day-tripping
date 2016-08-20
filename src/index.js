@@ -32,9 +32,11 @@ const initialState = fromJS({
     },
     autocompleteOptions: [],
   },
-  snackbar: {
-    open: false,
-    message: '',
+  app: {
+    snackbar: {
+      open: false,
+      message: '',
+    },
   },
   dialog: {
     open: false,
