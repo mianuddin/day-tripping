@@ -2,6 +2,7 @@
 import ajax from 'superagent';
 import { hashHistory } from 'react-router';
 import firebase from 'firebase';
+import shortid from 'shortid';
 
 const config = {
   apiKey: 'AIzaSyChHIxDfFXyI5OdNe1xJGdoWpLAx1_4_ZU',
@@ -214,18 +215,17 @@ export function listenToAuth() {
           if (snapshot.val() === null) {
             firebase.database().ref(`/users/${userId}`).set({
               displayName: firebase.auth().currentUser.displayName,
-              count: 0,
+              visitCount: 0,
+              listId: shortid.generate(),
             });
           } else {
-            const newCount = snapshot.val().count + 1;
+            const newCount = snapshot.val().visitCount + 1;
             firebase.database().ref(`/users/${userId}`).update({
-              count: newCount,
+              visitCount: newCount,
             });
           }
         });
-
         hashHistory.push('/app');
-
         dispatch({
           type: 'LOGIN_USER',
           username: user.displayName,
