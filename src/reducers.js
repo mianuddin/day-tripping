@@ -94,6 +94,7 @@ export function auth(state, action) {
         currently: 'LOGGED_IN',
         username: action.username,
         uid: action.uid,
+        listId: action.listId,
       }));
     default:
       return state;

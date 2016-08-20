@@ -210,26 +210,32 @@ export function listenToAuth() {
     const { auth } = getState();
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        const userId = firebase.auth().currentUser.uid;
+        const userId = user.uid;
+        let listId;
+
         firebase.database().ref(`/users/${userId}`).once('value').then((snapshot) => {
           if (snapshot.val() === null) {
+            listId = shortid.generate();
             firebase.database().ref(`/users/${userId}`).set({
               displayName: firebase.auth().currentUser.displayName,
               visitCount: 0,
-              listId: shortid.generate(),
+              listId,
             });
           } else {
-            const newCount = snapshot.val().visitCount + 1;
+            listId = snapshot.val().listId;
             firebase.database().ref(`/users/${userId}`).update({
-              visitCount: newCount,
+              visitCount: snapshot.val().visitCount + 1,
             });
           }
-        });
-        hashHistory.push('/app');
-        dispatch({
-          type: 'LOGIN_USER',
-          username: user.displayName,
-          uid: user.uid,
+
+          dispatch({
+            type: 'LOGIN_USER',
+            username: firebase.auth().currentUser.displayName,
+            uid: firebase.auth().currentUser.uid,
+            listId,
+          });
+
+          hashHistory.push('/app');
         });
       } else {
         hashHistory.push('/');

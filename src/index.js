@@ -45,6 +45,7 @@ const initialState = fromJS({
     currently: 'ANONYMOUS',
     username: null,
     uid: null,
+    listId: null,
   },
 });
 
