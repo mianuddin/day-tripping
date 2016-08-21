@@ -22,6 +22,8 @@ export function location(state, action) {
         }
       }
       return state;
+    case 'CLEAR_LOCATIONS':
+      return state.set('locations', fromJS([]));
     default:
       return state;
   }

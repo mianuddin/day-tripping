@@ -266,6 +266,7 @@ export function attemptLogin() {
     .catch((error) => {
       dispatch({ type: 'DISPLAY_ERROR', error: `Login failed: ${error.message}` });
       dispatch({ type: 'LOGOUT' });
+      dispatch({ type: 'CLEAR_LOCATIONS' });
     });
   };
 }
@@ -273,6 +274,7 @@ export function attemptLogin() {
 export function logoutUser() {
   return (dispatch) => {
     dispatch({ type: 'LOGOUT' });
+    dispatch({ type: 'CLEAR_LOCATIONS' });
     firebase.auth().signOut();
   };
 }
