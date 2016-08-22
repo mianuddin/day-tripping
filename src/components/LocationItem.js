@@ -29,6 +29,7 @@ const LocationItem = props => {
         leftIcon={<Directions />}
         linkButton
         href={`https://www.google.com/maps/dir/Current+Location/${props.location.lat},${props.location.lng}`}
+        target="_blank"
       />
       <Divider />
       <MenuItem
