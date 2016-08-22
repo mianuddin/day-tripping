@@ -63,9 +63,8 @@ export function addLocation(name, address) {
           dispatch(recieveLocationCoordinates());
           const lat = response.body.results[0].geometry.location.lat;
           const lng = response.body.results[0].geometry.location.lng;
-          dispatch(this.setSnackbarMessage('Added location!'));
           firebase.database().ref(`/list/${listId}`).push({ name, address, lat, lng, locationId });
-          dispatch(insertLocationToState(name, address, lat, lng, locationId));
+          dispatch(this.setSnackbarMessage('Added location!'));
         } else {
           dispatch(this.setSnackbarMessage('Couldn\'t find the coordinates of your location!'));
           dispatch(recieveLocationCoordinatesError(error));
@@ -75,11 +74,19 @@ export function addLocation(name, address) {
 }
 
 export function removeLocation(id) {
-  return (dispatch) => {
-    dispatch(this.setSnackbarMessage(`Location ${id} removed!`));
-    dispatch({
-      type: 'REMOVE_LOCATION',
-      id,
+  return (dispatch, getState) => {
+    const { auth } = getState().toJS();
+    const listId = auth.listId;
+
+    firebase.database().ref(`/list/${listId}`).once('value').then((snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        if (childSnapshot.val().locationId === id) {
+          firebase.database().ref(`/list/${listId}`).child(childSnapshot.key).remove()
+          .then(() => {
+            dispatch(this.setSnackbarMessage(`Location ${id} removed!`));
+          });
+        }
+      });
     });
   };
 }
@@ -211,7 +218,7 @@ export function toggleDialog() {
 
 export function listenToAuth() {
   return (dispatch, getState) => {
-    const { auth } = getState();
+    const { auth } = getState().toJS();
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         const userId = user.uid;
@@ -238,12 +245,15 @@ export function listenToAuth() {
             uid: firebase.auth().currentUser.uid,
             listId,
           });
-        });
 
-        firebase.database().ref('/list').once('value').then((snapshot) => {
-          snapshot.child(listId).forEach((childSnapshot) => {
-            const location = childSnapshot.val();
+          firebase.database().ref(`/list/${listId}`).on('child_added', (data) => {
+            const location = data.val();
             dispatch(insertLocationToState(location.name, location.address, location.lat, location.lng, location.locationId));
+          });
+
+          firebase.database().ref(`/list/${listId}`).on('child_removed', (data) => {
+            const locationId = data.val().locationId;
+            dispatch(dispatch({ type: 'REMOVE_LOCATION', id: locationId }));
           });
 
           hashHistory.push('/app');
