@@ -32,9 +32,9 @@ const Landing = (props) => (
         </div>
       </div>
     </header>
-    <div className="container Remainder--height">
-      <div className="row center-xs middle-xs Remainder--height">
-        <div className="col-xs">
+    <div className="container Remainder">
+      <div className="row center-xs middle-xs Remainder__content">
+        <div className="col-xs-10 col-sm-12">
           <span className="Remainder__tagline">
             Easily keep track of the places you want to be, for free.
           </span><br />
@@ -45,6 +45,13 @@ const Landing = (props) => (
             }}
             onClick={props.attemptLogin}
           />
+        </div>
+      </div>
+      <div className="row center-xs">
+        <div className="col-xs">
+          <span className="Remainder__footer">
+            Designed and Developed with <a href="https://github.com/mianuddin/day-tripping">❤</a> by <a href="http://mianudd.in/">Mian Uddin</a>
+          </span>
         </div>
       </div>
     </div>
