@@ -42,3 +42,6 @@ sftp-config.json
 
 # legacy project files
 legacy
+
+# Production (gh-pages) directory
+./prod
