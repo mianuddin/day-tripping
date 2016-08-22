@@ -6,13 +6,13 @@ export default {
   entry: [
     './src/index.js',
   ],
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
   module: {
     loaders: [
       {
         test: /\.js?$/,
         exclude: /node_modules/,
-        loader: 'react-hot!babel',
+        loader: 'babel',
       },
       {
         test: /\.json$/,
@@ -37,7 +37,9 @@ export default {
   },
   plugins: [
     new ExtractTextPlugin('css/bundle.css'),
-    new webpack.optimize.UglifyJsPlugin({ minimize: true }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
