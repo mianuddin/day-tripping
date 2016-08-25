@@ -1,19 +1,29 @@
 @import "../_base/variables";
 
-$heroHeight: 48vh;
-$remainderHeight: calc(100vh - (64px + #{$heroHeight}));
-
 .Hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .middle-xs {
+    height: 100%;
+  }
+}
+
+.Hero__Main {
+  flex-basis: 60%;
   background: 50% no-repeat;
   min-height: 33vh;
+  display: flex;
+  flex-direction: column;
 
   @media (max-width: 768px) {
     background: 30% no-repeat;
   }
-}
 
-.Hero--height {
-  height: $heroHeight;
+  .container {
+    flex-basis: 100%;
+  }
 }
 
 .Hero__Headline {
@@ -31,34 +41,40 @@ $remainderHeight: calc(100vh - (64px + #{$heroHeight}));
   }
 }
 
-.Remainder {
-  height: $remainderHeight;
+.Hero__Content {
+  flex-basis: 40%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
-.Remainder__content {
-  flex-basis: 60%;
-}
-
-.Remainder__tagline {
+.Hero__tagline {
   color: #fff;
   font-size: 1.5em;
   margin-bottom: 1rem;
 }
 
-.Remainder__footer {
+.Footer {
   color: #fff;
-  font-size: 80%;
-}
-.Remainder__footer a {
-  transition: all 300ms;
-  color: #fff;
-  text-decoration: none;
-  cursor: pointer;
-  
-  &:hover {
-    color: lighten($color_brand, 12%);
+  background: #333;
+  height: 12vh;
+
+  .container {
+    height: 100%;
+  }
+
+  .middle-xs {
+    height: 100%;
+  }
+
+  a {
+    transition: all 300ms;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    
+    &:hover {
+      color: $color-brand;
+    }
   }
 }
