@@ -2,6 +2,7 @@ import React from 'react';
 import AppBar from 'material-ui/lib/app-bar';
 import RaisedButton from 'material-ui/lib/raised-button';
 import LinearProgress from 'material-ui/lib/linear-progress';
+import FlatButton from 'material-ui/lib/flat-button';
 
 import '../styles/scss/_modules/_Landing.scss';
 
@@ -34,6 +35,7 @@ const Landing = (props) => (
             color: '#FFF',
             fontFamily: 'Poppins, sans-serif',
           }}
+          iconElementRight={<FlatButton label="Sign In / Sign Up" onClick={props.attemptLogin} />}
         />
 
         <div className="container">
