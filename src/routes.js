@@ -4,12 +4,13 @@ import { Route, IndexRoute } from 'react-router';
 import SmartApp from './pages/SmartApp';
 import SmartTrip from './pages/SmartTrip';
 import SmartLanding from './pages/SmartLanding';
+import Theme from './pages/Theme';
 
 const routes = (
-  <Route>
-    <Route path="/" component={ SmartLanding } />
-    <Route path="/app" component={ SmartApp }>
-      <IndexRoute component={ SmartTrip } />
+  <Route component={Theme} >
+    <Route path="/" component={SmartLanding} />
+    <Route path="/app" component={SmartApp}>
+      <IndexRoute component={SmartTrip} />
     </Route>
   </Route>
 );

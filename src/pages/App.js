@@ -1,10 +1,10 @@
 import React from 'react';
 
-import ThemeManager from 'material-ui/lib/styles/theme-manager';
-import AppBar from 'material-ui/lib/app-bar';
-import Popover from 'material-ui/lib/popover/popover';
-import FlatButton from 'material-ui/lib/flat-button';
-import MyRawTheme from '../styles/other/RedTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import AppBar from 'material-ui/AppBar';
+import Popover from 'material-ui/Popover';
+import FlatButton from 'material-ui/FlatButton';
 
 import '../styles/scss/index.scss';
 
@@ -18,12 +18,6 @@ class App extends React.Component {
 
     this.handleTouchTap = this.handleTouchTap.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
-  }
-
-  getChildContext() {
-    return {
-      muiTheme: ThemeManager.getMuiTheme(MyRawTheme),
-    };
   }
 
   handleTouchTap(event) {
@@ -41,6 +35,16 @@ class App extends React.Component {
   }
 
   render() {
+    const muiTheme = getMuiTheme({
+      fontFamily: 'Open Sans, sans-serif',
+      palette: {
+        primary1Color: '#F06161',
+        primary2Color: '#EB786B',
+        accent1Color: '#3A7BA3',
+        accent2Color: '#398ABD',
+      },
+    });
+
     const AppBarDropdown = (
       <FlatButton
         label={this.props.authDetails.username || 'Loading...'}
@@ -50,31 +54,33 @@ class App extends React.Component {
     );
 
     return (
-      <div>
-        <AppBar
-          title="Day Tripping"
-          style={{
-            background: '#F06161',
-          }}
-          titleStyle={{
-            color: '#FFF',
-            fontFamily: 'Poppins, sans-serif',
-          }}
-          iconElementRight={AppBarDropdown}
-        />
-        <Popover
-          open={this.state.open}
-          anchorEl={this.state.anchorEl}
-          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-          targetOrigin={{ horizontal: 'right', vertical: 'top' }}
-          onRequestClose={this.handleRequestClose}
-        >
-          <div>
-            <FlatButton label="Log Out" onClick={this.props.logoutUser} />
-          </div>
-        </Popover>
-        {this.props.children}
-      </div>
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <div>
+          <AppBar
+            title="Day Tripping"
+            style={{
+              background: '#F06161',
+            }}
+            titleStyle={{
+              color: '#FFF',
+              fontFamily: 'Poppins, sans-serif',
+            }}
+            iconElementRight={AppBarDropdown}
+          />
+          <Popover
+            open={this.state.open}
+            anchorEl={this.state.anchorEl}
+            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+            targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+            onRequestClose={this.handleRequestClose}
+          >
+            <div>
+              <FlatButton label="Log Out" onClick={this.props.logoutUser} />
+            </div>
+          </Popover>
+          {this.props.children}
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
@@ -83,10 +89,6 @@ App.propTypes = {
   children: React.PropTypes.node,
   authDetails: React.PropTypes.object,
   logoutUser: React.PropTypes.func,
-};
-
-App.childContextTypes = {
-  muiTheme: React.PropTypes.object,
 };
 
 export default App;

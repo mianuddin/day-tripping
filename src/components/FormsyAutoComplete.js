@@ -1,5 +1,5 @@
 import React from 'react';
-import AutoComplete from 'material-ui/lib/auto-complete';
+import AutoComplete from 'material-ui/AutoComplete';
 import { HOC } from 'formsy-react';
 
 class FormsyAutoComplete extends React.Component {

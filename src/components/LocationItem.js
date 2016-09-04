@@ -1,15 +1,14 @@
 import React from 'react';
 
-import ListItem from 'material-ui/lib/lists/list-item';
-import Colors from 'material-ui/lib/styles/colors';
-import IconButton from 'material-ui/lib/icon-button';
-import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
-import IconMenu from 'material-ui/lib/menus/icon-menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import Divider from 'material-ui/lib/divider';
-import Delete from 'material-ui/lib/svg-icons/action/delete';
-import Directions from 'material-ui/lib/svg-icons/maps/directions';
-import Edit from 'material-ui/lib/svg-icons/editor/mode-edit';
+import { ListItem } from 'material-ui/List';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import Divider from 'material-ui/Divider';
+import Delete from 'material-ui/svg-icons/action/delete';
+import Directions from 'material-ui/svg-icons/maps/directions';
+import Edit from 'material-ui/svg-icons/editor/mode-edit';
 
 const LocationItem = props => {
   const iconButtonElement = (
@@ -18,7 +17,7 @@ const LocationItem = props => {
       tooltip="More options"
       tooltipPosition="top-left"
     >
-      <MoreVertIcon color={Colors.grey400} />
+      <MoreVertIcon color="#BDBDBD" />
     </IconButton>
   );
 
@@ -30,6 +29,7 @@ const LocationItem = props => {
         linkButton
         href={`https://www.google.com/maps/dir/Current+Location/${props.location.lat},${props.location.lng}`}
         target="_blank"
+        rel="noopener noreferrer"
       />
       <Divider />
       <MenuItem

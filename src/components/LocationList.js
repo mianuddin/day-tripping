@@ -1,7 +1,7 @@
 import React from 'react';
 
-import List from 'material-ui/lib/lists/list';
-import Icon from 'material-ui/lib/svg-icons/maps/near-me';
+import { List } from 'material-ui/List';
+import Icon from 'material-ui/svg-icons/maps/near-me';
 import LocationItem from './LocationItem';
 
 const LocationList = (props) => {
@@ -29,7 +29,7 @@ const LocationList = (props) => {
   return (
     <div className="LocationList">
       {
-        ! props.locations.length
+        !props.locations.length
         ? EmptyStateJSX
         : ListJSX
       }
