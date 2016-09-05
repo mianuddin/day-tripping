@@ -2,7 +2,7 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import PlaceIcon from 'material-ui/svg-icons/maps/place';
-import MyLocationIcon from 'material-ui/svg-icons/maps/person-pin-circle';
+import MyLocationIcon from 'material-ui/svg-icons/maps/my-location';
 
 import MapStyle from '../styles/other/EvenLighter.json';
 
@@ -13,15 +13,17 @@ const markerStyle = {
   height: MARKER_SIZE,
   left: -MARKER_SIZE / 2,
   top: -MARKER_SIZE,
+  color: '#009688',
 };
 
-const MARKER_SIZE2 = 64;
+const MARKER_SIZE2 = 36;
 const markerStyle2 = {
   position: 'absolute',
   width: MARKER_SIZE2,
   height: MARKER_SIZE2,
   left: -MARKER_SIZE2 / 2,
   top: -MARKER_SIZE2,
+  color: '#607D8B',
 };
 
 class Gmap extends React.Component {
