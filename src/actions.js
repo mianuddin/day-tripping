@@ -248,7 +248,7 @@ export function listenToAuth() {
 
           firebase.database().ref(`/list/${listId}`).on('child_added', (data) => {
             const location = data.val();
-            dispatch(insertLocationToState(location.name, location.address, location.lat, location.lng, location.locationId));
+            dispatch(insertLocationToState(location.name, location.address, location.lat, location.lng, location.locationId)); // eslint-disable-line max-len
           });
 
           firebase.database().ref(`/list/${listId}`).on('child_removed', (data) => {
@@ -282,9 +282,12 @@ export function attemptLogin() {
 }
 
 export function logoutUser() {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const { auth } = getState().toJS();
+
     dispatch({ type: 'LOGOUT' });
     dispatch({ type: 'CLEAR_LOCATIONS' });
+    firebase.database().ref(`/list/${auth.listId}`).off();
     firebase.auth().signOut();
   };
 }
