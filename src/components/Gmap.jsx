@@ -1,21 +1,27 @@
 /* global google */
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
+import PlaceIcon from 'material-ui/svg-icons/maps/place';
+import MyLocationIcon from 'material-ui/svg-icons/maps/my-location';
 
 import MapStyle from '../styles/other/EvenLighter.json';
+
+const MARKER_SIZE = 40;
+
+const markerStyle = {
+  position: 'absolute',
+  width: MARKER_SIZE,
+  height: MARKER_SIZE,
+  left: -MARKER_SIZE / 2,
+  top: -MARKER_SIZE,
+};
 
 class Gmap extends React.Component {
 
   render() {
-    const markers = this.props.locations.map((location, index) => ({
-      position: {
-        lat: location.lat,
-        lng: location.lng,
-      },
-      key: location.id,
-      defaultAnimation: 2,
-      index,
-    }));
+    const markers = this.props.locations.map((location) => (
+      <PlaceIcon lat={location.lat} lng={location.lng} key={location.id} style={markerStyle} />
+    ));
 
     return (
       <GoogleMapReact
@@ -24,7 +30,9 @@ class Gmap extends React.Component {
         options={{
           styles: MapStyle,
         }}
-      />
+      >
+        { markers }
+      </GoogleMapReact>
     );
   }
 }
