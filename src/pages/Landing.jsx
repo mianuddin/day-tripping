@@ -71,7 +71,9 @@ const Landing = (props) => (
         <div className="row center-xs middle-xs">
           <div className="col-xs">
             <span>
-              Designed and Developed with <a href="https://github.com/mianuddin/day-tripping">❤</a> by <a href="http://mianudd.in/">Mian Uddin</a>
+              Designed and Developed with
+              &nbsp;<a href="https://github.com/mianuddin/day-tripping">❤</a>
+              &nbsp;by <a href="http://mianudd.in/">Mian Uddin</a>
             </span>
           </div>
         </div>
