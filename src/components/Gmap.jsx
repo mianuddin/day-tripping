@@ -1,34 +1,10 @@
 /* global google */
 import React from 'react';
-import { GoogleMap, GoogleMapLoader, Marker } from 'react-google-maps';
+import GoogleMapReact from 'google-map-react';
 
 import MapStyle from '../styles/other/EvenLighter.json';
 
 class Gmap extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleMapCenterChanged = this.handleMapCenterChanged.bind(this);
-    this.handleMapBoundsChanged = this.handleMapBoundsChanged.bind(this);
-  }
-
-  handleMapCenterChanged() {
-    const newPos = this.refs.map.getCenter();
-    if (newPos.equals(new google.maps.LatLng(this.props.initialCenter))) {
-      return;
-    }
-
-    this.props.setCenter({
-      lat: newPos.lat(),
-      lng: newPos.lng(),
-    });
-  }
-
-  handleMapBoundsChanged() {
-    const bounds = this.refs.map.getBounds();
-
-    this.props.setBounds(bounds);
-  }
 
   render() {
     const markers = this.props.locations.map((location, index) => ({
@@ -42,28 +18,9 @@ class Gmap extends React.Component {
     }));
 
     return (
-      <GoogleMapLoader
-        containerElement={
-          <div />
-        }
-        googleMapElement={
-          <GoogleMap
-            ref="map"
-            defaultZoom={14}
-            center={this.props.center}
-            onCenterChanged={this.handleMapCenterChanged}
-            onBoundsChanged={this.handleMapBoundsChanged}
-            defaultOptions={{
-              styles: MapStyle,
-            }}
-          >
-          {markers.map((marker) => (
-            <Marker
-              {...marker}
-            />
-          ))}
-          </GoogleMap>
-        }
+      <GoogleMapReact
+        center={this.props.center}
+        defaultZoom={14}
       />
     );
   }
