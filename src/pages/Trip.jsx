@@ -60,7 +60,7 @@ Trip.propTypes = {
   fetchSuggestions: React.PropTypes.func,
   isDialogOpen: React.PropTypes.bool,
   toggleDialog: React.PropTypes.func,
-  authDetails: React.PropTypes.object,
+  userDetails: React.PropTypes.object,
 };
 
 export default Trip;

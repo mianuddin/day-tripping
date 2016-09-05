@@ -13,7 +13,7 @@ function mapStateToProps(state) {
     mapCenter: state.getIn(['map', 'center']).toJS(),
     autocompleteOptions: state.getIn(['map', 'autocompleteOptions']).toJS(),
     isDialogOpen: state.getIn(['dialog', 'open']),
-    authDetails: state.get('auth').toJS(),
+    userDetails: state.get('user').toJS(),
   };
 }
 

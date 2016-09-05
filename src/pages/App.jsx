@@ -51,7 +51,7 @@ class App extends React.Component {
     const AppBarDropdown = (
       <MediaQuery minWidth={768}>
         <FlatButton
-          label={this.props.authDetails.username || 'Loading...'}
+          label={this.props.userDetails.username || 'Loading...'}
           onTouchTap={this.handleTouchTap}
           style={{ color: '#ffffff' }}
         />
@@ -109,7 +109,7 @@ class App extends React.Component {
 
 App.propTypes = {
   children: React.PropTypes.node,
-  authDetails: React.PropTypes.object,
+  userDetails: React.PropTypes.object,
   logoutUser: React.PropTypes.func,
   browser: React.PropTypes.object,
 };

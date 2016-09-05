@@ -5,7 +5,7 @@ import * as Actions from '../actions.js';
 
 function mapStateToProps(state) {
   return {
-    authDetails: state.get('auth').toJS(),
+    userDetails: state.get('user').toJS(),
     browser: state.get('browser'),
   };
 }

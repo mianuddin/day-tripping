@@ -76,7 +76,7 @@ export function dialog(state, action) {
   }
 }
 
-export function auth(state, action) {
+export function user(state, action) {
   switch (action.type) {
     case 'ATTEMPTING_LOGIN':
       return state.merge(fromJS({

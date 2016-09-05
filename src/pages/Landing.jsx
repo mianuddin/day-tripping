@@ -22,7 +22,7 @@ const Landing = (props) => (
           backgroundImage: 'url(img/map.png)',
         }}
       >
-        { props.auth.currently === 'AWAITING_AUTH_RESPONSE' ? progressComponent : null }
+        { props.user.currently === 'AWAITING_AUTH_RESPONSE' ? progressComponent : null }
 
         <AppBar
           title="Day Tripping"
@@ -83,7 +83,7 @@ const Landing = (props) => (
 );
 
 Landing.propTypes = {
-  auth: React.PropTypes.object,
+  user: React.PropTypes.object,
   attemptLogin: React.PropTypes.func,
   logoutUser: React.PropTypes.func,
 };

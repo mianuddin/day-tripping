@@ -5,7 +5,7 @@ import * as Actions from '../actions.js';
 
 function mapStateToProps(state) {
   return {
-    auth: state.get('auth').toJS(),
+    user: state.get('user').toJS(),
   };
 }
 

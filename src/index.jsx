@@ -43,7 +43,7 @@ const initialState = fromJS({
   dialog: {
     open: false,
   },
-  auth: {
+  user: {
     currently: 'ANONYMOUS',
     username: null,
     uid: null,

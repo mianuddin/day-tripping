@@ -46,9 +46,9 @@ function insertLocationToState(name, address, lat, lng, id) {
 
 export function addLocation(name, address) {
   return (dispatch, getState) => {
-    const { map, auth } = getState().toJS();
+    const { map, user } = getState().toJS();
     const bounds = map.bounds;
-    const listId = auth.listId;
+    const listId = user.listId;
     const locationId = shortid.generate();
 
     dispatch(this.setSnackbarMessage('Adding location...'));
@@ -75,8 +75,8 @@ export function addLocation(name, address) {
 
 export function removeLocation(id) {
   return (dispatch, getState) => {
-    const { auth } = getState().toJS();
-    const listId = auth.listId;
+    const { user } = getState().toJS();
+    const listId = user.listId;
 
     firebase.database().ref(`/list/${listId}`).once('value').then((snapshot) => {
       snapshot.forEach((childSnapshot) => {
@@ -217,8 +217,7 @@ export function toggleDialog() {
 }
 
 export function listenToAuth() {
-  return (dispatch, getState) => {
-    const { auth } = getState().toJS();
+  return (dispatch) => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         const userId = user.uid;
@@ -260,7 +259,7 @@ export function listenToAuth() {
         });
       } else {
         hashHistory.push('/');
-        if (auth.currently !== 'ANONYMOUS') { // log out if not already logged out
+        if (user.currently !== 'ANONYMOUS') { // log out if not already logged out
           dispatch({ type: 'LOGOUT' });
         }
       }
@@ -283,11 +282,11 @@ export function attemptLogin() {
 
 export function logoutUser() {
   return (dispatch, getState) => {
-    const { auth } = getState().toJS();
+    const { user } = getState().toJS();
 
     dispatch({ type: 'LOGOUT' });
     dispatch({ type: 'CLEAR_LOCATIONS' });
-    firebase.database().ref(`/list/${auth.listId}`).off();
+    firebase.database().ref(`/list/${user.listId}`).off();
     firebase.auth().signOut();
   };
 }
