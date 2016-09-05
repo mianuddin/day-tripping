@@ -4,13 +4,18 @@ import autoprefixer from 'autoprefixer';
 
 export default {
   entry: [
-    './src/index.js',
+    './src/index',
   ],
   devtool: 'source-map',
   module: {
     loaders: [
       {
         test: /\.js?$/,
+        exclude: /node_modules/,
+        loader: 'babel',
+      },
+      {
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel',
       },
@@ -28,7 +33,7 @@ export default {
     autoprefixer({ browsers: ['last 2 versions'] }),
   ],
   resolve: {
-    extensions: ['', '.js', '.scss'],
+    extensions: ['', '.js', '.jsx', '.scss'],
   },
   output: {
     path: 'dist',

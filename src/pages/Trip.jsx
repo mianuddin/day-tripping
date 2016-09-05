@@ -1,8 +1,8 @@
 import React from 'react';
+import Snackbar from 'material-ui/Snackbar';
 
 import Gmap from '../components/Gmap';
 import LocationContainer from '../components/LocationContainer';
-import Snackbar from 'material-ui/Snackbar';
 
 class Trip extends React.Component {
   componentWillMount() {

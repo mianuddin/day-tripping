@@ -7,11 +7,11 @@ import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import { responsiveStateReducer, responsiveStoreEnhancer } from 'redux-responsive';
 import * as reducers from './reducers';
 import routes from './routes';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 import { listenToAuth } from './actions';
-import { responsiveStateReducer, responsiveStoreEnhancer } from 'redux-responsive';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
