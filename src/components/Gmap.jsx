@@ -21,6 +21,9 @@ class Gmap extends React.Component {
       <GoogleMapReact
         center={this.props.center}
         defaultZoom={14}
+        options={{
+          styles: MapStyle,
+        }}
       />
     );
   }
