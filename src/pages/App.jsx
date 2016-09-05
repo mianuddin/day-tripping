@@ -41,7 +41,10 @@ class App extends React.Component {
         <FlatButton
           label={this.props.userDetails.username || 'Loading...'}
           onTouchTap={this.handleAppBarPopoverToggle}
-          style={{ color: '#ffffff' }}
+          style={{
+            color: '#ffffff',
+            margin: '7px 0px 0px',
+          }}
         />
       </MediaQuery>
     );
