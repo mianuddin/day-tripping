@@ -2,7 +2,7 @@ import React from 'react';
 import Snackbar from 'material-ui/Snackbar';
 
 import Gmap from '../components/Gmap';
-import LocationContainer from '../components/LocationContainer';
+import LocationForm from '../components/LocationForm';
 
 class Add extends React.Component {
   componentWillMount() {
@@ -11,7 +11,7 @@ class Add extends React.Component {
 
   render() {
     return (
-      <div className="Trip">
+      <div className="Trip Add">
         <div className="GmapContainer">
           <Gmap
             locations={this.props.locations}
@@ -22,15 +22,10 @@ class Add extends React.Component {
             geolocation={this.props.geolocation}
           />
         </div>
-        <LocationContainer
-          className="LocationContainer"
-          locations={this.props.locations}
-          onRemove={this.props.removeLocation}
+        <LocationForm
           handleSubmit={this.props.addLocation}
           autocompleteOptions={this.props.autocompleteOptions}
           fetchSuggestions={this.props.fetchSuggestions}
-          isDialogOpen={this.props.isDialogOpen}
-          toggleDialog={this.props.toggleDialog}
         />
         <Snackbar
           open={this.props.isSnackbarOpen}

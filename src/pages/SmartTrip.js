@@ -13,7 +13,6 @@ function mapStateToProps(state) {
     snackbarMessage: state.getIn(['app', 'snackbar', 'message']),
     mapCenter: state.getIn(['map', 'center']).toJS(),
     autocompleteOptions: state.getIn(['map', 'autocompleteOptions']).toJS(),
-    isDialogOpen: state.getIn(['dialog', 'open']),
     userDetails: state.get('user').toJS(),
   };
 }
@@ -42,9 +41,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   fetchSuggestions: (query) => {
     dispatch(Actions.getSuggestions(query));
-  },
-  toggleDialog: () => {
-    dispatch(Actions.toggleDialog());
   },
 });
 

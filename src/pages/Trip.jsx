@@ -29,8 +29,6 @@ class Trip extends React.Component {
           handleSubmit={this.props.addLocation}
           autocompleteOptions={this.props.autocompleteOptions}
           fetchSuggestions={this.props.fetchSuggestions}
-          isDialogOpen={this.props.isDialogOpen}
-          toggleDialog={this.props.toggleDialog}
         />
         <Snackbar
           open={this.props.isSnackbarOpen}
@@ -59,8 +57,6 @@ Trip.propTypes = {
   setMapBounds: React.PropTypes.func,
   autocompleteOptions: React.PropTypes.array,
   fetchSuggestions: React.PropTypes.func,
-  isDialogOpen: React.PropTypes.bool,
-  toggleDialog: React.PropTypes.func,
   userDetails: React.PropTypes.object,
   geolocation: React.PropTypes.object,
 };

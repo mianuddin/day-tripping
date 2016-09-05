@@ -13,6 +13,12 @@
   }
 }
 
+.Add .GmapContainer {
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
 .gmnoprint a, .gmnoprint span {
   display: none;
 }
