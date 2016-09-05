@@ -189,6 +189,25 @@ export function toggleSnackbar() {
   };
 }
 
+export function toggleMobileDrawer() {
+  return {
+    type: 'TOGGLE_MOBILEDRAWER',
+  };
+}
+
+export function openAppBarPopover(element) {
+  return {
+    type: 'OPEN_APPBARPOPOVER',
+    element,
+  };
+}
+
+export function closeAppBarPopover() {
+  return {
+    type: 'CLOSE_APPBARPOPOVER',
+  };
+}
+
 export function setSnackbarMessage(message) {
   return {
     type: 'SET_SNACKBAR_MESSAGE',

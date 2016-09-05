@@ -62,6 +62,13 @@ export function app(state, action) {
       return state.setIn(['snackbar', 'open'], !state.getIn(['snackbar', 'open']));
     case 'SET_SNACKBAR_MESSAGE':
       return state.setIn(['snackbar', 'message'], action.message).setIn(['snackbar', 'open'], true);
+    case 'TOGGLE_MOBILEDRAWER':
+      return state.setIn(['mobileDrawer', 'open'], !state.getIn(['mobileDrawer', 'open']));
+    case 'OPEN_APPBARPOPOVER':
+      return state.setIn(['appBarPopover', 'open'], true)
+        .setIn(['appBarPopover', 'anchorEl'], action.element);
+    case 'CLOSE_APPBARPOPOVER':
+      return state.setIn(['appBarPopover', 'open'], false);
     default:
       return state;
   }

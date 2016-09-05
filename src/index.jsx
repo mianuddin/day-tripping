@@ -39,6 +39,13 @@ const initialState = fromJS({
       open: false,
       message: '',
     },
+    mobileDrawer: {
+      open: false,
+    },
+    appBarPopover: {
+      open: false,
+      anchorEl: null,
+    },
   },
   dialog: {
     open: false,

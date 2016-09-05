@@ -15,26 +15,14 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      open: false,
-    };
-
-    this.handleTouchTap = this.handleTouchTap.bind(this);
-    this.handleRequestClose = this.handleRequestClose.bind(this);
+    this.handleAppBarPopoverToggle = this.handleAppBarPopoverToggle.bind(this);
   }
 
-  handleTouchTap(event) {
+  handleAppBarPopoverToggle(event) {
+    // This prevents ghost click.
     event.preventDefault();
-    this.setState({
-      open: true,
-      anchorEl: event.currentTarget,
-    });
-  }
 
-  handleRequestClose() {
-    this.setState({
-      open: false,
-    });
+    this.props.openAppBarPopover(event.currentTarget);
   }
 
   render() {
@@ -52,7 +40,7 @@ class App extends React.Component {
       <MediaQuery minWidth={768}>
         <FlatButton
           label={this.props.userDetails.username || 'Loading...'}
-          onTouchTap={this.handleTouchTap}
+          onTouchTap={this.handleAppBarPopoverToggle}
           style={{ color: '#ffffff' }}
         />
       </MediaQuery>
@@ -71,15 +59,15 @@ class App extends React.Component {
               fontFamily: 'Poppins, sans-serif',
             }}
             showMenuIconButton={this.props.browser.lessThan.small}
-            onLeftIconButtonTouchTap={this.handleTouchTap}
+            onLeftIconButtonTouchTap={this.props.toggleMobileDrawer}
             iconElementRight={AppBarDropdown}
           />
           <MediaQuery maxWidth={768}>
             <Drawer
               docked={false}
               width={200}
-              open={this.state.open}
-              onRequestChange={(open) => this.setState({ open })}
+              open={this.props.app.mobileDrawer.open}
+              onRequestChange={this.props.toggleMobileDrawer}
             >
               <MenuItem onTouchTap={this.handleClose}>Menu Item</MenuItem>
               <MenuItem onTouchTap={this.props.logoutUser}>Log Out</MenuItem>
@@ -88,11 +76,11 @@ class App extends React.Component {
 
           <MediaQuery minWidth={768}>
             <Popover
-              open={this.state.open}
-              anchorEl={this.state.anchorEl}
+              open={this.props.app.appBarPopover.open}
+              anchorEl={this.props.app.appBarPopover.anchorEl}
               anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
               targetOrigin={{ horizontal: 'right', vertical: 'top' }}
-              onRequestClose={this.handleRequestClose}
+              onRequestClose={this.props.closeAppBarPopover}
             >
               <div>
                 <FlatButton label="Log Out" onClick={this.props.logoutUser} />
@@ -112,6 +100,10 @@ App.propTypes = {
   userDetails: React.PropTypes.object,
   logoutUser: React.PropTypes.func,
   browser: React.PropTypes.object,
+  toggleMobileDrawer: React.PropTypes.func,
+  openAppBarPopover: React.PropTypes.func,
+  closeAppBarPopover: React.PropTypes.func,
+  app: React.PropTypes.object,
 };
 
 export default App;
