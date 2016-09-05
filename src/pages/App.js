@@ -5,6 +5,9 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar';
 import Popover from 'material-ui/Popover';
 import FlatButton from 'material-ui/FlatButton';
+import MediaQuery from 'react-responsive';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
 
 import '../styles/scss/index.scss';
 
@@ -46,11 +49,13 @@ class App extends React.Component {
     });
 
     const AppBarDropdown = (
-      <FlatButton
-        label={this.props.authDetails.username || 'Loading...'}
-        onTouchTap={this.handleTouchTap}
-        style={{ color: '#ffffff' }}
-      />
+      <MediaQuery minWidth={768}>
+        <FlatButton
+          label={this.props.authDetails.username || 'Loading...'}
+          onTouchTap={this.handleTouchTap}
+          style={{ color: '#ffffff' }}
+        />
+      </MediaQuery>
     );
 
     return (
@@ -65,19 +70,36 @@ class App extends React.Component {
               color: '#FFF',
               fontFamily: 'Poppins, sans-serif',
             }}
+            showMenuIconButton={this.props.browser.lessThan.small}
+            onLeftIconButtonTouchTap={this.handleTouchTap}
             iconElementRight={AppBarDropdown}
           />
-          <Popover
-            open={this.state.open}
-            anchorEl={this.state.anchorEl}
-            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-            targetOrigin={{ horizontal: 'right', vertical: 'top' }}
-            onRequestClose={this.handleRequestClose}
-          >
-            <div>
-              <FlatButton label="Log Out" onClick={this.props.logoutUser} />
-            </div>
-          </Popover>
+          <MediaQuery maxWidth={768}>
+            <Drawer
+              docked={false}
+              width={200}
+              open={this.state.open}
+              onRequestChange={(open) => this.setState({ open })}
+            >
+              <MenuItem onTouchTap={this.handleClose}>Menu Item</MenuItem>
+              <MenuItem onTouchTap={this.props.logoutUser}>Log Out</MenuItem>
+            </Drawer>
+          </MediaQuery>
+
+          <MediaQuery minWidth={768}>
+            <Popover
+              open={this.state.open}
+              anchorEl={this.state.anchorEl}
+              anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+              targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+              onRequestClose={this.handleRequestClose}
+            >
+              <div>
+                <FlatButton label="Log Out" onClick={this.props.logoutUser} />
+              </div>
+            </Popover>
+          </MediaQuery>
+
           {this.props.children}
         </div>
       </MuiThemeProvider>
@@ -89,6 +111,7 @@ App.propTypes = {
   children: React.PropTypes.node,
   authDetails: React.PropTypes.object,
   logoutUser: React.PropTypes.func,
+  browser: React.PropTypes.object,
 };
 
 export default App;

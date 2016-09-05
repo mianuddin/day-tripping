@@ -11,6 +11,7 @@ import * as reducers from './reducers';
 import routes from './routes';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { listenToAuth } from './actions';
+import { responsiveStateReducer, responsiveStoreEnhancer } from 'redux-responsive';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -50,9 +51,13 @@ const initialState = fromJS({
 });
 
 const store = createStore(
-  combineReducers(reducers),
+  combineReducers({
+    ...reducers,
+    browser: responsiveStateReducer,
+  }),
   initialState,
   compose(
+    responsiveStoreEnhancer,
     applyMiddleware(ReduxThunk),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )
