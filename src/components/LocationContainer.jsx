@@ -7,7 +7,7 @@ import LocationList from './LocationList';
 import LocationDialog from './LocationDialog';
 
 const LocationContainer = props => (
-  <Paper className="LocationContainer">
+  <Paper className="LocationContainer" zDepth={2} rounded={false}>
     <LocationList
       locations={props.locations}
       onRemove={props.onRemove}

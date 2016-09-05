@@ -4,12 +4,13 @@
   right: 0;
   margin-right: 3rem;
   margin-top: 2rem;
-  flex-basis: 36%;
+  flex-basis: 40%;
   display: flex;
   flex-direction: column;
-  border-radius: none;
+  z-index: 1;
 
   @media (max-width: 768px) {
+    box-shadow: rgba(0, 0, 0, 0.156863) 0px -3px 10px, rgba(0, 0, 0, 0.227451) 0px -3px 10px !important;
     position: static;
     margin: 0;
     overflow-y: scroll;
