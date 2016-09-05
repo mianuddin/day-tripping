@@ -69,7 +69,6 @@ class App extends React.Component {
               open={this.props.app.mobileDrawer.open}
               onRequestChange={this.props.toggleMobileDrawer}
             >
-              <MenuItem onTouchTap={this.handleClose}>Menu Item</MenuItem>
               <MenuItem onTouchTap={this.props.logoutUser}>Log Out</MenuItem>
             </Drawer>
           </MediaQuery>
