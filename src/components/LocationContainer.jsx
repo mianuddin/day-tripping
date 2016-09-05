@@ -1,9 +1,9 @@
 import React from 'react';
-
-import LocationList from './LocationList';
 import Paper from 'material-ui/Paper';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+
+import LocationList from './LocationList';
 import LocationDialog from './LocationDialog';
 
 const LocationContainer = props => (

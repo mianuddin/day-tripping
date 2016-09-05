@@ -1,11 +1,11 @@
 import React from 'react';
-
 import Formsy from 'formsy-react';
 import FormsyText from 'formsy-material-ui/lib/FormsyText';
 import AutoComplete from 'material-ui/AutoComplete';
-import FormsyAutoComplete from './FormsyAutoComplete';
 import Dialog from 'material-ui/Dialog';
 import RaisedButton from 'material-ui/RaisedButton';
+
+import FormsyAutoComplete from './FormsyAutoComplete';
 
 class LocationDialog extends React.Component {
   constructor(props) {

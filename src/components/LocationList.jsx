@@ -1,7 +1,7 @@
 import React from 'react';
-
 import { List } from 'material-ui/List';
 import Icon from 'material-ui/svg-icons/maps/near-me';
+
 import LocationItem from './LocationItem';
 
 const LocationList = (props) => {

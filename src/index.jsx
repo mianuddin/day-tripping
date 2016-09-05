@@ -9,6 +9,7 @@ import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { responsiveStateReducer, responsiveStoreEnhancer } from 'redux-responsive';
+
 import * as reducers from './reducers';
 import routes from './routes';
 import { listenToAuth } from './actions';

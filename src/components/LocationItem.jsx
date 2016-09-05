@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { ListItem } from 'material-ui/List';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';

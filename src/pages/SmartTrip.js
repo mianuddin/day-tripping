@@ -1,5 +1,6 @@
-import Trip from './Trip';
 import { connect } from 'react-redux';
+
+import Trip from './Trip';
 import * as Actions from '../actions.js';
 
 function mapStateToProps(state) {
