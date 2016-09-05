@@ -13,10 +13,5 @@
     box-shadow: rgba(0, 0, 0, 0.156863) 0px -3px 10px, rgba(0, 0, 0, 0.227451) 0px -3px 10px !important;
     position: static;
     margin: 0;
-    overflow-y: scroll;
-
-    &::-webkit-scrollbar { 
-      display: none; 
-    }
   }
 }
