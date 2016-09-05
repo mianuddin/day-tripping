@@ -31,6 +31,8 @@ const initialState = fromJS({
     bounds: {},
     geolocation: {
       isFetching: false,
+      lat: 37.7749,
+      lng: -122.4194,
     },
     autocompleteOptions: [],
   },

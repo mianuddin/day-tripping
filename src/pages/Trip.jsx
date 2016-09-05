@@ -19,6 +19,7 @@ class Trip extends React.Component {
             center={this.props.mapCenter}
             setCenter={this.props.setMapCenter}
             setBounds={this.props.setMapBounds}
+            geolocation={this.props.geolocation}
           />
         </div>
         <LocationContainer
@@ -61,6 +62,7 @@ Trip.propTypes = {
   isDialogOpen: React.PropTypes.bool,
   toggleDialog: React.PropTypes.func,
   userDetails: React.PropTypes.object,
+  geolocation: React.PropTypes.object,
 };
 
 export default Trip;

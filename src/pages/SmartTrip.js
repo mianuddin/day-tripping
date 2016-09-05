@@ -8,6 +8,7 @@ function mapStateToProps(state) {
     locations: state.getIn(['location', 'locations']).toJS(),
     isFetchingCoordinates: state.getIn(['locations', 'isFetchingCoordinates']),
     isFetchingGeolocation: state.getIn(['map', 'geolocation', 'isFetching']),
+    geolocation: state.getIn(['map', 'geolocation']).toJS(),
     isSnackbarOpen: state.getIn(['app', 'snackbar', 'open']),
     snackbarMessage: state.getIn(['app', 'snackbar', 'message']),
     mapCenter: state.getIn(['map', 'center']).toJS(),

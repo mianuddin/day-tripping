@@ -41,6 +41,8 @@ export function map(state, action) {
       return state.merge(fromJS({
         geolocation: {
           isFetching: false,
+          lat: action.lat,
+          lng: action.lng,
         },
         center: {
           lat: action.lat,
