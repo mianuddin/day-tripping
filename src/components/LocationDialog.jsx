@@ -57,6 +57,7 @@ class LocationDialog extends React.Component {
               dataSource={this.props.autocompleteOptions}
               filter={AutoComplete.noFilter}
               onUpdateInput={this.props.fetchSuggestions}
+              className="LocationDialog__AutoComplete"
               style={{
                 width: '100%',
               }}
