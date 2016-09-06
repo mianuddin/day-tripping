@@ -8,6 +8,12 @@
   margin: 0 !important;
   width: 100%;
 
+  a[href^="http://maps.google.com/maps"],
+  a[href^="https://maps.google.com/maps"],
+  a[href^="https://www.google.com/maps"] {
+    display:none !important
+  }
+
   @media (min-width: 768px) {
     height: calc(100vh - 64px);
   }
@@ -21,10 +27,4 @@
 
 .gmnoprint a, .gmnoprint span {
   display: none;
-}
-
-a[href^="http://maps.google.com/maps"],
-a[href^="https://maps.google.com/maps"],
-a[href^="https://www.google.com/maps"] {
-  display:none !important
 }
