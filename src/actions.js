@@ -261,6 +261,7 @@ export function listenToAuth() {
             type: 'LOGIN_USER',
             username: firebase.auth().currentUser.displayName,
             uid: firebase.auth().currentUser.uid,
+            photoURL: firebase.auth().currentUser.photoURL,
             listId,
           });
 

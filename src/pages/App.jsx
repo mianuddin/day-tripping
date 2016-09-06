@@ -8,6 +8,9 @@ import FlatButton from 'material-ui/FlatButton';
 import MediaQuery from 'react-responsive';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import Avatar from 'material-ui/Avatar';
+import Divider from 'material-ui/Divider';
+import Exit from 'material-ui/svg-icons/action/exit-to-app';
 
 import '../styles/scss/index.scss';
 
@@ -45,6 +48,7 @@ class App extends React.Component {
             color: '#ffffff',
             margin: '7px 0px 0px',
           }}
+          icon={<Avatar src={this.props.userDetails.photoURL} size={30} />}
         />
       </MediaQuery>
     );
@@ -68,11 +72,38 @@ class App extends React.Component {
           <MediaQuery maxWidth={768}>
             <Drawer
               docked={false}
-              width={200}
               open={this.props.app.mobileDrawer.open}
               onRequestChange={this.props.toggleMobileDrawer}
             >
-              <MenuItem onTouchTap={this.props.logoutUser}>Log Out</MenuItem>
+              <div
+                style={{
+                  padding: '16px 16px 0',
+                  background: 'url("img/map.png") 25% 50%',
+                }}
+              >
+                <Avatar src={this.props.userDetails.photoURL} size={56} />
+                <span
+                  style={{
+                    display: 'block',
+                    padding: '8px 0',
+                    fontWeight: '500',
+                    fontFamily: 'Roboto',
+                    color: '#fff',
+                  }}
+                >
+                  {this.props.userDetails.username}
+                </span>
+              </div>
+              <Divider />
+              <MenuItem
+                onTouchTap={this.props.logoutUser}
+                leftIcon={<Exit />}
+                style={{
+                  fontFamily: 'Roboto',
+                }}
+              >
+                Log Out
+              </MenuItem>
             </Drawer>
           </MediaQuery>
 

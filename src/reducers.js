@@ -92,6 +92,7 @@ export function user(state, action) {
         currently: 'AWAITING_AUTH_RESPONSE',
         username: 'guest',
         uid: 'null',
+        photoURL: 'null',
         listId: 'null',
       }));
     case 'LOGOUT':
@@ -99,6 +100,7 @@ export function user(state, action) {
         currently: 'ANONYMOUS',
         username: 'guest',
         uid: 'null',
+        photoURL: 'null',
         listId: 'null',
       }));
     case 'LOGIN_USER':
@@ -106,6 +108,7 @@ export function user(state, action) {
         currently: 'LOGGED_IN',
         username: action.username,
         uid: action.uid,
+        photoURL: action.photoURL,
         listId: action.listId,
       }));
     default:

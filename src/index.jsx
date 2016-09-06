@@ -56,6 +56,7 @@ const initialState = fromJS({
     currently: 'ANONYMOUS',
     username: null,
     uid: null,
+    photoURL: null,
     listId: null,
   },
 });
