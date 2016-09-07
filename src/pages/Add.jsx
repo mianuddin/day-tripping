@@ -5,35 +5,13 @@ import Gmap from '../components/Gmap';
 import LocationForm from '../components/LocationForm';
 
 class Add extends React.Component {
-  componentWillMount() {
-    this.props.getUserGeolocation();
-  }
-
   render() {
     return (
-      <div className="Trip Add">
-        <div className="GmapContainer">
-          <Gmap
-            locations={this.props.locations}
-            initialCenter={{ lat: 37.7749, lng: -122.4194 }}
-            center={this.props.mapCenter}
-            setCenter={this.props.setMapCenter}
-            setBounds={this.props.setMapBounds}
-            geolocation={this.props.geolocation}
-          />
-        </div>
-        <LocationForm
-          handleSubmit={this.props.addLocation}
-          autocompleteOptions={this.props.autocompleteOptions}
-          fetchSuggestions={this.props.fetchSuggestions}
-        />
-        <Snackbar
-          open={this.props.isSnackbarOpen}
-          message={this.props.snackbarMessage}
-          autoHideDuration={3000}
-          onRequestClose={this.props.toggleSnackbar}
-        />
-      </div>
+      <LocationForm
+        handleSubmit={this.props.addLocation}
+        autocompleteOptions={this.props.autocompleteOptions}
+        fetchSuggestions={this.props.fetchSuggestions}
+      />
     );
   }
 }

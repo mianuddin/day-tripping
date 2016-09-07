@@ -116,6 +116,7 @@ export function getUserGeolocation() {
   return (dispatch) => {
     dispatch(this.setSnackbarMessage('Searching for your location...'));
     dispatch(fetchUserGeolocation());
+
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         const latitude = position.coords.latitude;
