@@ -5,10 +5,6 @@ import Gmap from '../components/Gmap';
 import LocationContainer from '../components/LocationContainer';
 
 class Locations extends React.Component {
-  componentWillMount() {
-    this.props.getUserGeolocation();
-  }
-
   render() {
     return (
       <LocationContainer

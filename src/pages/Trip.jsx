@@ -1,5 +1,6 @@
 import React from 'react';
 import Snackbar from 'material-ui/Snackbar';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import Gmap from '../components/Gmap';
 
@@ -22,7 +23,7 @@ class Trip extends React.Component {
           />
         </div>
 
-        {this.props.children}
+        {React.cloneElement(this.props.children, { key: this.props.location.pathname })}
 
         <Snackbar
           open={this.props.isSnackbarOpen}
@@ -54,6 +55,7 @@ Trip.propTypes = {
   fetchSuggestions: React.PropTypes.func,
   userDetails: React.PropTypes.object,
   geolocation: React.PropTypes.object,
+  location: React.PropTypes.node,
 };
 
 export default Trip;
