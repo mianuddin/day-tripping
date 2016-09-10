@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import SmartApp from './pages/SmartApp';
-import SmartLocations from './pages/SmartLocations';
-import SmartAdd from './pages/SmartAdd';
-import SmartLanding from './pages/SmartLanding';
-import SmartTrip from './pages/SmartTrip';
-import Theme from './pages/Theme';
+import SmartApp from './containers/SmartApp';
+import SmartLocations from './containers/SmartLocations';
+import SmartAdd from './containers/SmartAdd';
+import SmartLanding from './containers/SmartLanding';
+import SmartTrip from './containers/SmartTrip';
+import Theme from './containers/Theme';
 
 const routes = (
   <Route component={Theme} >
