@@ -1,6 +1,5 @@
 import React from 'react';
 import Snackbar from 'material-ui/Snackbar';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import Gmap from '../components/Gmap';
 

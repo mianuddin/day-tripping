@@ -27,6 +27,15 @@ const markerStyle2 = {
 };
 
 class Gmap extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(center) {
+    this.props.setCenter(center.center);
+  }
 
   render() {
     const markers = this.props.locations.map((location) => (
@@ -40,6 +49,7 @@ class Gmap extends React.Component {
 
     return (
       <GoogleMapReact
+        onChange={this.onChange}
         center={this.props.center}
         defaultZoom={14}
         options={{
