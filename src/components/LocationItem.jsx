@@ -48,12 +48,14 @@ const LocationItem = props => {
       primaryText={props.location.name}
       rightIconButton={rightIconMenu}
       secondaryText={props.location.address}
+      onTouchTap={props.setMapCenter.bind(this, { lat: props.location.lat, lng: props.location.lng })} // eslint-disable-line
     />
   );
 };
 
 LocationItem.propTypes = {
   location: React.PropTypes.object,
+  setMapCenter: React.PropTypes.func,
   onRemove: React.PropTypes.func,
 };
 

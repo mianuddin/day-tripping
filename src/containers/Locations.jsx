@@ -1,7 +1,5 @@
 import React from 'react';
-import Snackbar from 'material-ui/Snackbar';
 
-import Gmap from '../components/Gmap';
 import LocationContainer from '../components/LocationContainer';
 
 class Locations extends React.Component {
@@ -14,6 +12,7 @@ class Locations extends React.Component {
         handleSubmit={this.props.addLocation}
         autocompleteOptions={this.props.autocompleteOptions}
         fetchSuggestions={this.props.fetchSuggestions}
+        setMapCenter={this.props.setMapCenter}
       />
     );
   }

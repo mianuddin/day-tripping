@@ -8,7 +8,12 @@ const LocationList = (props) => {
   const ListJSX = (
     <List>
       {props.locations.map((location, index) => (
-        <LocationItem location={location} key={index} onRemove={props.onRemove} />
+        <LocationItem
+          location={location}
+          key={index}
+          setMapCenter={props.setMapCenter}
+          onRemove={props.onRemove}
+        />
       ))}
     </List>
   );
@@ -39,6 +44,7 @@ const LocationList = (props) => {
 
 LocationList.propTypes = {
   locations: React.PropTypes.array,
+  setMapCenter: React.PropTypes.func,
   onRemove: React.PropTypes.func,
 };
 

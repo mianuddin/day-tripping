@@ -17,6 +17,7 @@ class LocationContainer extends React.Component {
       <Paper className="LocationContainer" zDepth={2} rounded={false}>
         <LocationList
           locations={this.props.locations}
+          setMapCenter={this.props.setMapCenter}
           onRemove={this.props.onRemove}
         />
         <div className="FloatingActionButton">
@@ -37,6 +38,7 @@ LocationContainer.propTypes = {
   handleSubmit: React.PropTypes.func,
   autocompleteOptions: React.PropTypes.array,
   fetchSuggestions: React.PropTypes.func,
+  setMapCenter: React.PropTypes.func,
 };
 
 export default LocationContainer;
