@@ -1,6 +1,5 @@
 import React from 'react';
 import Formsy from 'formsy-react';
-import FormsyText from 'formsy-material-ui/lib/FormsyText';
 import AutoComplete from 'material-ui/AutoComplete';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -19,7 +18,7 @@ class LocationDialog extends React.Component {
   }
 
   submitForm(data) {
-    this.props.handleSubmit(data.locationName, data.locationAddress);
+    this.props.handleSubmit(this.props.autocompleteOptions.find((suggestion) => (suggestion.address === data.locationAddress)));
     this.refs.form.reset();
     hashHistory.push('/app');
   }
@@ -66,25 +65,12 @@ class LocationDialog extends React.Component {
           }}
         >
           <div className="LocationForm__Inputs">
-            <FormsyText
-              required
-              name="locationName"
-              hintText="SF City Hall"
-              floatingLabelText="Location Name"
-              validations="isExisty"
-              style={{
-                width: '100%',
-              }}
-            />
-
-            <br />
-
             <FormsyAutoComplete
               required
               name="locationAddress"
-              floatingLabelText="Location Address"
+              floatingLabelText="Search for place"
               validations="isExisty"
-              dataSource={this.props.autocompleteOptions}
+              dataSource={this.props.autocompleteOptions.map((suggestion) => (suggestion.address))}
               filter={AutoComplete.noFilter}
               onUpdateInput={this.props.fetchSuggestions}
               className="LocationForm__AutoComplete"

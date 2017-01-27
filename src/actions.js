@@ -44,12 +44,14 @@ function insertLocationToState(name, address, lat, lng, id) {
   };
 }
 
-export function addLocation(name, address) {
+export function addLocation(location) {
   return (dispatch, getState) => {
     const { map, user } = getState().toJS();
     const bounds = map.bounds;
     const listId = user.listId;
     const locationId = shortid.generate();
+    const address = location.address;
+    const name = location.name;
 
     dispatch(this.setSnackbarMessage('Adding location...'));
     dispatch(fetchLocationCoordinates(address));
@@ -143,13 +145,15 @@ function fetchSuggestions(query) {
 }
 
 function recieveSuggestions(suggestions) {
-  const suggestionTextOnly = suggestions.map((suggestion) => (
-    suggestion.description
-  ));
+  const suggestionObject = suggestions.map((suggestion) => ({
+    name: suggestion.structured_formatting.main_text,
+    address: suggestion.description,
+    placeId: suggestion.place_id,
+  }));
 
   return {
     type: 'RECIEVE_SUGGESTIONS_SUCCESS',
-    suggestions: suggestionTextOnly,
+    suggestions: suggestionObject,
   };
 }
 
