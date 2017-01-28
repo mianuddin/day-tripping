@@ -1,5 +1,4 @@
 /* global google */
-import ajax from 'superagent';
 import { hashHistory } from 'react-router';
 import firebase from 'firebase';
 import shortid from 'shortid';
@@ -13,10 +12,9 @@ const config = {
 
 firebase.initializeApp(config);
 
-function fetchLocationCoordinates(address) {
+function fetchLocationCoordinates() {
   return {
     type: 'FETCHING_LATLNG',
-    address,
   };
 }
 
@@ -46,32 +44,31 @@ function insertLocationToState(name, address, lat, lng, id) {
 
 export function addLocation(location) {
   return (dispatch, getState) => {
-    const { map, user } = getState().toJS();
-    const bounds = map.bounds;
+    const user = getState().toJS();
     const listId = user.listId;
     const locationId = shortid.generate();
-    const address = location.address;
-    const name = location.name;
+    const placeId = location.placeId;
 
     dispatch(this.setSnackbarMessage('Adding location...'));
-    dispatch(fetchLocationCoordinates(address));
+    dispatch(fetchLocationCoordinates());
 
-    return ajax.get('https://maps.googleapis.com/maps/api/geocode/json')
-      .query({ address, bounds, key: 'AIzaSyCVxP_vXzu6fM-5h7DmKU5ht1uBuU78FvQ' })
-      .end((error, response) => {
-        if (!error
-          && response
-          && !(response.body.results[0] == null)) { // eslint-disable-line eqeqeq
-          dispatch(recieveLocationCoordinates());
-          const lat = response.body.results[0].geometry.location.lat;
-          const lng = response.body.results[0].geometry.location.lng;
-          firebase.database().ref(`/list/${listId}`).push({ name, address, lat, lng, locationId });
-          dispatch(this.setSnackbarMessage('Added location!'));
-        } else {
-          dispatch(this.setSnackbarMessage('Couldn\'t find the coordinates of your location!'));
-          dispatch(recieveLocationCoordinatesError(error));
-        }
-      });
+    const placesService = new google.maps.places.PlacesService(document.createElement('div'));
+
+    placesService.getDetails({ placeId }, (place, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        const lat = place.geometry.location.lat();
+        const lng = place.geometry.location.lng();
+        const address = place.formatted_address;
+        const name = place.name;
+
+        firebase.database().ref(`/list/${listId}`).push({ name, address, lat, lng, locationId });
+        dispatch(this.setSnackbarMessage('Added location!'));
+        dispatch(recieveLocationCoordinates());
+      } else {
+        dispatch(this.setSnackbarMessage('Couldn\'t find the coordinates of your location!'));
+        dispatch(recieveLocationCoordinatesError('error'));
+      }
+    });
   };
 }
 
@@ -172,12 +169,12 @@ export function getSuggestions(query) {
 
     const input = query !== '' ? query : ' ';
 
-    const service = new google.maps.places.AutocompleteService();
+    const autocompleteService = new google.maps.places.AutocompleteService();
     const request = {
       input,
       bounds: map.bounds,
     };
-    service.getQueryPredictions(request, (predictions, status) => {
+    autocompleteService.getQueryPredictions(request, (predictions, status) => {
       if (status !== google.maps.places.PlacesServiceStatus.OK) {
         dispatch(recieveSuggestionsError(status));
         return;
