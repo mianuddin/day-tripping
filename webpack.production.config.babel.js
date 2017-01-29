@@ -1,6 +1,7 @@
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import autoprefixer from 'autoprefixer';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 export default {
   entry: [
@@ -41,6 +42,7 @@ export default {
     filename: 'bundle.js',
   },
   plugins: [
+    new BundleAnalyzerPlugin(),
     new ExtractTextPlugin('css/bundle.css'),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
