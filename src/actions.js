@@ -44,7 +44,7 @@ function insertLocationToState(name, address, lat, lng, id) {
 
 export function addLocation(location) {
   return (dispatch, getState) => {
-    const user = getState().toJS();
+    const { user } = getState().toJS();
     const listId = user.listId;
     const locationId = shortid.generate();
     const placeId = location.placeId;
