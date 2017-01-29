@@ -7,7 +7,7 @@ export default {
   entry: [
     './src/index',
   ],
-  devtool: 'source-map',
+  devtool: 'cheap-module-source-map',
   module: {
     loaders: [
       {
